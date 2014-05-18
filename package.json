@@ -6,6 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xsmallbird/www.ptcms.com.git"
+  },
+  "keywords": [
+    "nodejs",
+    "angularjs",
+    "mongodb"
+  ],
   "author": "xbird",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xsmallbird/www.ptcms.com/issues"
+  },
+  "homepage": "https://github.com/xsmallbird/www.ptcms.com"
 }
