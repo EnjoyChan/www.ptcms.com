@@ -1,0 +1,11 @@
+{
+  "name": "www.ptcms.com",
+  "version": "0.0.0",
+  "description": "基于nodejs的人员与任务周期管理系统",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xbird",
+  "license": "ISC"
+}
