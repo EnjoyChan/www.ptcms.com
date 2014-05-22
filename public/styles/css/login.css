@@ -1,0 +1,65 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background-color: #3d3d3d;
+}
+.form-login {
+  max-width: 280px;
+  padding: 15px 15px 40px 15px;
+  margin: 80px auto;
+  background-color: #fff;
+  border-radius: 3px;
+}
+.title,
+.account,
+.password,
+.remember,
+.msg,
+.submit,
+.forget {
+  position: relative;
+  margin-top: 8px;
+}
+.title .fa,
+.account .fa,
+.password .fa,
+.remember .fa,
+.msg .fa,
+.submit .fa,
+.forget .fa {
+  position: absolute;
+  top: 10px;
+  right: 28px;
+  color: #3276b1;
+}
+.title {
+  color: #3d3d3d;
+}
+.title h2 {
+  margin-bottom: 0;
+  font-size: 24px;
+  font-weight: normal;
+}
+.title .smile {
+  position: absolute;
+  top: 8px;
+  right: 18px;
+  font-size: 18px;
+}
+.msg {
+  visibility: hidden;
+}
+.msg span {
+  font-size: 13px;
+  color: #d2322d;
+}
+.submit {
+  margin-top: 10px;
+}
+.forget {
+  text-align: right;
+}
+.forget a {
+  font-size: 12px;
+}

@@ -1,0 +1,30 @@
+doctype html
+html
+  head(ng-app="ptcms")
+    meta(charset="utf-8")
+    title 首页－人员与任务周期管理系统
+    link(rel="stylesheet" type="text/css" href="/styles/css/bootstrap.css")
+    link(rel="stylesheet" type="text/css" href="/styles/css/font-awesome.min.css")
+    link(rel="stylesheet" type="text/css" href="/styles/css/index.css")
+    script(src="/vendor/jquery/jquery-1.11.0.min.js")
+    script(src="/vendor/angular/angular.js")
+    script(src="/vendor/angular-cookies/angular-cookies.js")
+    script(src="/vendor/angular-resource/angular-resource.js")
+    script(src="/vendor/angular-ui-router/angular-ui-router.js")
+    script(src="/vendor/angular-ui-bootstrap/ui-bootstrap.js")
+    script(src="/scripts/app.js")
+    script(src="/scripts/controller.js")
+  body(ng-controller="appCtrl")
+    div.page-header
+      div.brand
+        span.name 人员与任务周期管理系统
+      div.user
+        span.name {{user.name}}
+    div.page-container
+      div.page-sidebar
+        ul.menu
+      div.page-content
+        div(ui-view)
+    div.page-footer
+      div.copyright
+        span.content 2014 © Designed and built with all the love in the world by xbird.

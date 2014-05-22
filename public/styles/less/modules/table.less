@@ -1,0 +1,167 @@
+@table-bg:                        transparent;
+@table-bg-hover:                  #efefef;
+@table-striped-bg:                #f9f9f9;
+@table-border-color:              #ddd;
+@font-color:                      #333;
+@font-family:                     'microsoft yahei ui','Microsoft Yahei',Verdana,Helvetica,Arial,'Simsun';
+
+@table-cell-padding:              6px;
+@table-condensed-cell-padding:    3px 5px;
+
+@radius:                          3px;
+@border-radius-small:             3px;
+
+@table-info-color:                #39b3d7; // info
+
+// 处理table类型，即处理table表示的数据的意义
+//
+.handle-table-type(@th-bg) {
+  > thead {
+    > tr {
+      > th {
+        background-color: @th-bg;
+        color: #FFF;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+
+/* reset */
+thead,tbody,tfoot{outline:none;border:none;}
+
+
+/* 表格初始化样式 */
+.table {
+  width: 100%;
+  margin: 0 auto 9px;
+  background-color: @table-bg;
+  font: normal 14px/1.428571429 @font-family;
+  color: #555;
+  border-collapse: separate;
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > td,
+      > th {
+        padding: @table-cell-padding;
+        vertical-align: middle;
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+/* 圆角 */
+.table {
+  > thead {
+    th:first-child {
+      border-radius: @border-radius-small 0 0 0;
+      -moz-border-radius: @border-radius-small 0 0 0;
+      -webkit-border-radius: @border-radius-small 0 0 0;
+    }
+    th:last-child {
+      border-radius: 0 @border-radius-small 0 0;
+      -moz-border-radius: 0 @border-radius-small 0 0;
+      -webkit-border-radius: 0 @border-radius-small 0 0;
+    }
+  }
+}
+
+/* 底部有边框 */
+.table-simple {
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th {
+        border-bottom: none;
+      }
+      > td {
+        border-top: none;
+        border-bottom: 1px solid @table-border-color;
+      }
+    }
+  }
+}
+
+/* 紧缩表格 */
+.table-condensed {
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        padding: @table-condensed-cell-padding;
+      }
+    }
+  }
+}
+
+/* 带边框的表格 */
+.table-bordered {
+  border: 1px solid @table-border-color;
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > td,
+      > th {
+        border: 1px solid @table-border-color;
+      }
+    }
+  }
+}
+
+/* 条纹状 */
+.table-striped {
+  > tbody {
+    > tr:nth-child(odd) {
+      > th,
+      > td {
+        background-color: @table-striped-bg;
+      }
+    }
+  }
+}
+
+/* 鼠标悬停 */
+.table-hover {
+  > tbody {
+    > tr:hover {
+      > th,
+      > td {
+        background-color: @table-bg-hover;
+        color: #333;
+      }
+    }
+  }
+}
+
+.table-info {
+  .handle-table-type(@table-info-color);
+}
+
+// .table-primary {
+//   .handle-table-type(@turquoise);
+// }
+
+// .table-success {
+//   .handle-table-type(@emerald);
+// }
+
+// ===================================================================================
+// 控制表格td元素内容溢出
+// ===================================================================================
+.table {
+  th,
+  td {
+    overflow: hidden;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

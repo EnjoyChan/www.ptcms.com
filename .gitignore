@@ -1,0 +1,9 @@
+# ignore node_mudule
+node_modules/
+
+# ignore codekit config
+config.codekit
+
+# ignore
+db.js
+test.js

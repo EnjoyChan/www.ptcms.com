@@ -1,0 +1,145 @@
+// 辅助组建
+//
+/////////////////////////////////////////////////
+
+/* 文本对齐 */
+.align-right {
+  text-align: right;
+}
+.align-center {
+  text-align: center;
+}
+.align-left {
+  text-align: left;
+}
+
+/* 浮动方向 */
+.pull-right {
+  float:right;
+}
+.pull-left {
+  float:left;
+}
+
+/* 清除浮动 */
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+/* 浮动闭合 */
+.clearfix:after {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+.clearfix {
+  display:inline-block;
+}
+.clearfix {
+  display:block;
+}
+
+/* 隐藏 */
+.hidden {
+  visibility: hidden;
+}
+.none-display {
+  display: none !important;
+}
+.block-display {
+  display: block !important;
+}
+.table-row-display {
+  display: table-row !important;
+}
+
+
+/* 边框宽度*/
+.border-thin {
+  border: 1px solid #DDD;
+}
+.border-medium {
+  border: 2px solid #DDD;
+}
+.border-thick {
+  border: 3px solid #DDD;
+}
+
+.border-top-thin {
+  border-top: 1px solid #DDD;
+}
+.border-right-thin {
+  border-right: 1px solid #DDD;
+}
+.border-bottom-thin {
+  border-bottom: 1px solid #DDD;
+}
+.border-left-thin {
+  border-left: 1px solid #DDD;
+}
+
+.border-top-medium {
+  border-top: 2px solid #DDD;
+}
+.border-right-medium {
+  border-right: 2px solid #DDD;
+}
+.border-bottom-medium {
+  border-bottom: 2px solid #DDD;
+}
+.border-left-medium {
+  border-left: 2px solid #DDD;
+}
+
+.border-top-thick {
+  border-top: 3px solid #DDD;
+}
+.border-right-thick {
+  border-right: 3px solid #DDD;
+}
+.border-bottom-thick {
+  border-bottom: 3px solid #DDD;
+}
+.border-left-thick {
+  border-left: 3px solid #DDD;
+}
+
+.border-info {
+  border-color: #46b8da;
+}
+
+/* 分隔线 */
+.separator { display: inline-block; padding: 0 3px; color: #CCC; }
+
+.separator:before { content: "\/"; }
+
+/* 加载图标 */
+.loading{ position: absolute; left: 0; right: 0; top: 0; bottom: 0; content: ""; opacity: 0.5; z-index: 1001; background-color: #FFF; text-align: center; }
+
+.loading > span { margin-top: 20%; color: #1ABC9C; font-size: 48px; font-weight: bold; z-index: 1002; }
+
+/* ` 图片
+ ----------------------------------------------*/
+img { vertical-align: middle; }
+
+.img-responsive { display: block; max-width: 100%; height: auto; }
+
+.img-rounded { border-radius: 6px; }
+
+.img-thumbnail { padding: 4px; line-height: 1.428571429; background-color: #FFF; border: 1px solid #DDD; border-radius: 4px; -webkit-transition: all 0.2s ease-in-out; transition: all 0.2s ease-in-out; display: inline-block; max-width: 100%; height: auto; }
+
+.img-circle { border-radius: 50%; }
+
+/* 图片大小 */
+.img-xs { width: 30px; height: 30px; }
+
+.img-sm { width: 50px; height: 50px; }
+
+.img-md { width: 140px; height: 140px; }

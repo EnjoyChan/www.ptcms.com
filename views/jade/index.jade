@@ -1,0 +1,64 @@
+doctype html
+html(ng-app="ptcms")
+  head
+    meta(charset="utf-8")
+    title 首页－人员与任务周期管理系统
+    link(rel="stylesheet" type="text/css" href="/styles/css/bootstrap.css")
+    link(rel="stylesheet" type="text/css" href="/styles/css/font-awesome.min.css")
+    link(rel="stylesheet" type="text/css" href="/styles/css/index.css")
+  body(ng-controller="appCtrl")
+    div.page-header(ng-controller="headerCtrl")
+      div.brand
+        span.name 人员与任务周期管理系统
+      ul(class="nav pull-right")
+        li(class="dropdown user" on-toggle="toggled(open)")
+          a(href class="dropdown-toggle")
+            img(src="/imgs/avatar1_small.jpg")
+            span &nbsp;&nbsp;{{user.username}}&nbsp;
+            i(class="fa fa-angle-down")
+          ul(class="dropdown-menu")
+            li
+              a(href="#" ui-sref="myprofile")
+                i(class="fa fa-user")
+                个人信息
+            li
+              a(href="#" ui-sref="mytasks")
+                i(class="fa fa-tasks")
+                我的任务
+            li.divider
+            li
+              a(href="/logout" logout)
+                i(class="fa fa-key")
+                登&nbsp;出
+    div.page-container
+      div.page-sidebar(ng-controller="sidebarCtrl")
+        ul.menus
+          li(class="a-level active")
+            a
+              i(class="fa fa-home")
+              span 仪表盘
+          li(ng-repeat="menu in menus" class="a-level")
+            a(open-submenus)
+              i(class="fa" ng-class="menu.class")
+              span(ng-bind="menu.name")
+              span(class="arrow")
+            ul.submenus
+              li(ng-repeat="submenus in menu.submenus" class="b-level")
+                a(ui-sref="{{submenus.uisref}}" ng-bind="submenus.name" open-page)
+      div.page-content
+        div(ui-view)
+          h2 仪表盘
+    div.page-footer
+      div.copyright
+        span.content 2014 © Designed and built with all the love in the world by xbird.
+    script(src="/vendor/jquery/jquery-1.11.0.min.js")
+    script(src="/vendor/angular/angular.js")
+    script(src="/vendor/angular-cookies/angular-cookies.js")
+    script(src="/vendor/angular-resource/angular-resource.js")
+    script(src="/vendor/angular-ui-router/angular-ui-router.js")
+    script(src="/vendor/angular-ui-bootstrap/ui-bootstrap.js")
+    script(src="/scripts/app.js")
+    script(src="/scripts/controller.js")
+    script(src="/scripts/directive.js")
+    script(src="/scripts/service.js")
+    script(src="/scripts/filter.js")

@@ -1,0 +1,57 @@
+div(class="container-fluid classemanage")
+  div.row
+    div.col-md-12
+      ol.breadcrumb
+        li
+          i(class="fa fa-home")
+        li
+          a 类别管理
+        li.active 班级管理
+  div.row
+    div.col-md-8
+      div.classes-list
+        table(class="table table-simple table-hover table-info table-condensed table-flow")
+          thead
+            tr
+              th(class="grid-3") 序&nbsp;号
+              th(class="grid-9") 名&nbsp;称
+              th(class="grid-5") 别&nbsp;名
+              th(class="grid-6") 创建事件
+              th(class="grid-4") 是否开启
+              th(class="grid-5") 操&nbsp;作
+          tbody
+            tr(ng-repeat="classe in classes")
+              td(title="{{$index + 1}}") {{$index + 1}}
+              td(title="{{classe.name}}") {{classe.name}}
+              td(title="{{classe.alias}}") {{classe.alias}}
+              td(title="{{classe.createTime | date: 'yyyy-MM-dd'}}") {{classe.createTime | date: "yyyy-MM-dd"}}
+              td(class="isopen" title="{{classe.isOpen}}")
+                span(class="label" ng-class="{'label-closed': !classe.isOpen, 'label-actived': classe.isOpen}") {{classe.isOpen | isopen}}
+              td
+                a(go-modify-classe) 修&nbsp;改
+                span(class="separator")
+                a(class="link-warning" delete-classe data-number="{{classe.number}}") 删&nbsp;除
+    div(class="col-md-4")
+      div.classe-operation
+        div.header
+          i(class="fa fa-cog")
+          span 班级操作
+        form
+          input(type="hidden" ng-model="classenumber")
+          div.form-group
+            label(for="classename") 班级名称
+            input(class="form-control" id="classename"  type="text" placeholder="班级名称" ng-model="classename")
+          div.form-group
+            label(for="classealias") 班级别名
+            input(class="form-control" id="classealias"  type="text" placeholder="班级别名" ng-model="classealias")
+          div.checkbox
+            label
+              input(class="isopen" type="checkbox" ng-model="isopen")
+              是否开启
+          buttom(class="btn btn-info btn-sm" add-classe ng-show="isVisible")
+            确认添加
+            i(class="fa fa-plus")
+          buttom(class="btn btn-warning btn-sm" modify-classe ng-show="!isVisible")
+            确认修改
+          a(class="link-info" revoke-modify-classe ng-show="!isVisible" style="margin-left:12px;font-size: 12px;") 撤销修改
+

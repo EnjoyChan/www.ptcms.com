@@ -1,0 +1,44 @@
+/* ` 表格布局；以table元素的长度为100%，对父容器划分为32份。
+--------------------------------------------------------------*/
+.table-flow { width: 100%; margin: 0 auto; table-layout: fixed !important; }
+
+.table-flow:before,
+.table-flow:after { display: table; ; content: ""; line-height: 0; }
+.table-flow:after { clear: both; }
+
+.table-flow [class*="grid"],
+.table-flow [class*="grid"],
+.table-flow [class*="grid"] { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.table-flow th.grid-1, .table-flow td.grid-1   { width: 2.125%; }
+.table-flow th.grid-2, .table-flow td.grid-2   { width: 5.25%; }
+.table-flow th.grid-3, .table-flow td.grid-3   { width: 8.375%; }
+.table-flow th.grid-4, .table-flow td.grid-4   { width: 11.5%; }
+.table-flow th.grid-5, .table-flow td.grid-5   { width: 14.625%; }
+.table-flow th.grid-6, .table-flow td.grid-6   { width: 17.75%; }
+.table-flow th.grid-7, .table-flow td.grid-7   { width: 20.875%; }
+.table-flow th.grid-8, .table-flow td.grid-8   { width: 24%; }
+.table-flow th.grid-9, .table-flow td.grid-9   { width: 27.125%; }
+.table-flow th.grid-10,.table-flow td.grid-10  { width: 30.25%; }
+.table-flow th.grid-11,.table-flow td.grid-11  { width: 33.375%; }
+.table-flow th.grid-12,.table-flow td.grid-12  { width: 36.5%; }
+.table-flow th.grid-13,.table-flow td.grid-13  { width: 39.625%; }
+.table-flow th.grid-14,.table-flow td.grid-14  { width: 42.75%; }
+.table-flow th.grid-15,.table-flow td.grid-15  { width: 45.875%; }
+.table-flow th.grid-16,.table-flow td.grid-16  { width: 49%; }
+.table-flow th.grid-17,.table-flow td.grid-17  { width: 52.125%; }
+.table-flow th.grid-18,.table-flow td.grid-18  { width: 55.25%; }
+.table-flow th.grid-19,.table-flow td.grid-19  { width: 58.375%; }
+.table-flow th.grid-20,.table-flow td.grid-20  { width: 61.5%; }
+.table-flow th.grid-21,.table-flow td.grid-21  { width: 64.625%; }
+.table-flow th.grid-22,.table-flow td.grid-22  { width: 67.75%; }
+.table-flow th.grid-23,.table-flow td.grid-23  { width: 70.875%; }
+.table-flow th.grid-24,.table-flow td.grid-24  { width: 74%; }
+.table-flow th.grid-25,.table-flow td.grid-25  { width: 77.125%; }
+.table-flow th.grid-26,.table-flow td.grid-26  { width: 80.25%; }
+.table-flow th.grid-27,.table-flow td.grid-27  { width: 83.375%; }
+.table-flow th.grid-28,.table-flow td.grid-28  { width: 86.5%; }
+.table-flow th.grid-29,.table-flow td.grid-29  { width: 89.625%; }
+.table-flow th.grid-30,.table-flow td.grid-30  { width: 92.75%; }
+.table-flow th.grid-31,.table-flow td.grid-31  { width: 95.875%; }
+.table-flow th.grid-32,.table-flow td.grid-32  { width: 99%; }

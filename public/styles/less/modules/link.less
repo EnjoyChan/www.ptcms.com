@@ -1,0 +1,45 @@
+// 链接
+//-------------------------------------
+
+
+//
+//== Minix
+.link-variant(@color) {
+  color: @color;
+  &:hover {
+    color: darken(@color, 5%);
+  }
+}
+
+//
+//== 主体
+a {
+  &,
+  &:hover,
+  &:active,
+  &:visited,
+  &:focus {
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+
+//
+//== Style
+
+// Default
+a {
+  .link-variant(#39b3d7);
+}
+
+// info
+a.link-info {
+  .link-variant(#39b3d7);
+}
+
+// warning
+a.link-warning {
+  .link-variant(#f1c40f);
+}

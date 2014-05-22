@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="ptcms">
+  <head>
+    <meta charset="utf-8">
+    <title>首页－人员与任务周期管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/styles/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/styles/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/css/index.css">
+  </head>
+  <body ng-controller="appCtrl">
+    <div ng-controller="headerCtrl" class="page-header">
+      <div class="brand"><span class="name">人员与任务周期管理系统</span></div>
+      <ul class="nav pull-right">
+        <li on-toggle="toggled(open)" class="dropdown user"><a href class="dropdown-toggle"><img src="/imgs/avatar1_small.jpg"><span>&nbsp;&nbsp;{{user.username}}&nbsp;</span><i class="fa fa-angle-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" ui-sref="myprofile"><i class="fa fa-user"></i>个人信息</a></li>
+            <li><a href="#" ui-sref="mytasks"><i class="fa fa-tasks"></i>我的任务</a></li>
+            <li class="divider"></li>
+            <li><a href="/logout" logout><i class="fa fa-key"></i>登&nbsp;出</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="page-container">
+      <div ng-controller="sidebarCtrl" class="page-sidebar">
+        <ul class="menus">
+          <li class="a-level active"><a><i class="fa fa-home"></i><span>仪表盘</span></a></li>
+          <li ng-repeat="menu in menus" class="a-level"><a open-submenus><i ng-class="menu.class" class="fa"></i><span ng-bind="menu.name"></span><span class="arrow"></span></a>
+            <ul class="submenus">
+              <li ng-repeat="submenus in menu.submenus" class="b-level"><a ui-sref="{{submenus.uisref}}" ng-bind="submenus.name" open-page></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="page-content">
+        <div ui-view>
+          <h2>仪表盘</h2>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <div class="copyright"><span class="content">2014 © Designed and built with all the love in the world by xbird.</span></div>
+    </div>
+    <script src="/vendor/jquery/jquery-1.11.0.min.js"></script>
+    <script src="/vendor/angular/angular.js"></script>
+    <script src="/vendor/angular-cookies/angular-cookies.js"></script>
+    <script src="/vendor/angular-resource/angular-resource.js"></script>
+    <script src="/vendor/angular-ui-router/angular-ui-router.js"></script>
+    <script src="/vendor/angular-ui-bootstrap/ui-bootstrap.js"></script>
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/controller.js"></script>
+    <script src="/scripts/directive.js"></script>
+    <script src="/scripts/service.js"></script>
+    <script src="/scripts/filter.js"></script>
+  </body>
+</html>

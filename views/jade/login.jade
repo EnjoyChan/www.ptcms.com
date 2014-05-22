@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title 登录－人员与任务周期管理系统
+    link(rel="stylesheet" type="text/css" href="/styles/css/bootstrap.css")
+    link(rel="stylesheet" type="text/css" href="/styles/css/font-awesome.min.css")
+    link(rel="stylesheet" type="text/css" href="/styles/css/login.css")
+  body
+    div.container
+      form(class="form-login row")
+        div(class="title col-md-12")
+          h2 请登录
+          i(class="smile fa fa-smile-o")
+        div(class="account col-md-12")
+          input(class="form-control" name="account" type="text" placeholder="账号")
+          i(class="fa fa-user" style="margin-right: 3px;")
+        div(class="password col-md-12")
+          input(class="form-control" name="password" type="password" placeholder="密码")
+          i(class="fa fa-key")
+        div(class="remember col-md-12")
+          input(type="checkbox")
+          span &nbsp;&nbsp;记住我
+        div(class="msg col-md-12")
+          span 账号和密码不能为空
+        div(class="submit col-md-12")
+          button(class="signup btn btn-primary btn-block" type="button") 登&nbsp;录
+        div(class="forget col-md-12")
+          a(href="#") 难道我忘记密码了...
+    script(src="/vendor/jquery/jquery-1.11.0.min.js")
+    script(src="/vendor/jquery/jquery.cookie.js")
+    script(src="/scripts/login.js")

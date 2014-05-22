@@ -20,5 +20,16 @@
   "bugs": {
     "url": "https://github.com/xsmallbird/www.ptcms.com/issues"
   },
-  "homepage": "https://github.com/xsmallbird/www.ptcms.com"
+  "homepage": "https://github.com/xsmallbird/www.ptcms.com",
+  "devDependencies": {
+    "express": "^4.2.0",
+    "mongoose": "^3.8.9",
+    "cookie-parser": "^1.1.0",
+    "ejs": "^1.0.0",
+    "body-parser": "^1.2.0",
+    "crypto": "0.0.3",
+    "mongoose-id-autoinc": "^2013.7.14-4",
+    "lodash": "^2.4.1",
+    "morgan": "^1.1.0"
+  }
 }
