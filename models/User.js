@@ -52,6 +52,14 @@ var userSchema = mongoose.Schema({
   qq: {                           // QQ
     type: String
   },
+  createTime: {                   // 创建时间
+    type: String,
+    default: Date.now()
+  },
+  jointime: {                     // 加入时间
+    type: String,
+    default: Date.now()
+  },
   introduction: {                 // 自我介绍
     type: String
   },

@@ -17,8 +17,9 @@
       "level": "20000",
       "class": "fa-users",
       "submenus": [
-        { "name": "新增成员", "level": 20001, "uisref": "usercreate" },
-        { "name": "简历审核", "level": 20002, "uisref": "resumecheck" }
+        { "name": "成员列表", "level": 20001, "uisref": "userslist" },
+        { "name": "新增成员", "level": 20002, "uisref": "usercreate" },
+        { "name": "简历审核", "level": 20003, "uisref": "resumecheck" }
       ]
     }, {
       "name": "任务管理",

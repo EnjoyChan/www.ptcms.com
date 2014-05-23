@@ -1,0 +1,75 @@
+
+<div class="container-fluid userslist">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li><a>人员管理</a></li>
+        <li class="active">成员列表</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="users-list">
+        <table class="table table-simple table-hover table-info table-condensed table-flow">
+          <thead>
+            <tr>
+              <th class="grid-2">序&nbsp;号</th>
+              <th class="grid-">账&nbsp;号</th>
+              <th class="grid-">姓&nbsp;名</th>
+              <th class="grid-">职&nbsp;务</th>
+              <th class="grid-">年&nbsp;级</th>
+              <th class="grid-">班&nbsp;级</th>
+              <th class="grid-">宿&nbsp;舍</th>
+              <th class="grid-">联系方式</th>
+              <th class="grid-">Q&nbsp;Q</th>
+              <th class="grid-3">加入时间</th>
+              <th class="grid-4">操&nbsp;作</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="user in users" class="user-all single single-{{$index + 1}}">
+            <tr class="base">
+              <td>{{$index + 1}}</td>
+              <td title="{{user.account}}">{{user.account}}</td>
+              <td title="{{user.username}}">{{user.username}}</td>
+              <td title="{{user.role | role}}">{{user.role | role}}</td>
+              <td title="{{user.grade}}">{{user.grade}}</td>
+              <td title="{{user.classe}}">{{user.classe}}</td>
+              <td title="{{user.dormitory}}">{{user.dormitory}}</td>
+              <td title="{{user.phone}}">{{user.phone}}</td>
+              <td title="{{user.qq}}">{{user.qq}}</td>
+              <td title="{{user.jointime | date: 'yyyy-MM-dd'}}">{{user.jointime | date: "yyyy-MM-dd"}}</td>
+              <td><a toggle-detail="toggle-detail" class="link-info">详&nbsp;情</a><span class="separator"></span><a class="link-warning">编&nbsp;辑</a></td>
+            </tr>
+            <tr class="detail">
+              <td colspan="11">
+                <div class="row">
+                  <div class="col-md-12">未完成任务</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">已完成任务</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">当前所在项目</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">历史所在项目</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">当前所在小组</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">历史所在小组</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">个人介绍</div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

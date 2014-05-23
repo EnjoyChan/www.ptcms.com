@@ -7,3 +7,29 @@ div(class="container-fluid groupmanage")
         li
           a 类别管理
         li.active 小组管理
+  div.row
+    div.col-md-8
+      div.groups-list
+        table(class="table table-simple table-hover table-info table-condensed table-flow")
+          thead
+            tr
+              th(class="grid-3") 序&nbsp;号
+              th(class="grid-5") 名&nbsp;称
+              th(class="grid-4") 组&nbsp;长
+              th(class="grid-9") 当前成员
+              th(class="grid-4") 是否开启
+              th(class="grid-7") 操&nbsp;作
+          tbody
+            tr(ng-repeat="group in groups")
+              td(title="{{$index + 1}}") {{$index + 1}}
+              td(title="{{group.name}}") {{group.name}}
+              td(title="{{group.leader}}") {{group.leader}}
+              td(title="{{group.currentNumber}}") {{group.currentNumber}}
+              td(class="isopen" title="{{group.isOpen}}")
+                span(class="label" ng-class="{'label-closed': !group.isOpen, 'label-actived': group.isOpen}") {{group.isOpen | isopen}}
+              td
+                a() 详&nbsp;情
+                span(class="separator")
+                a(class="link-warning") 修&nbsp;改
+                span(class="separator")
+                a(class="link-danger") 删&nbsp;除

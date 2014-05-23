@@ -1,6 +1,30 @@
 angular.module('ptcms.directives', [])
 
 //
+//== 通用
+  .directive('toggleDetail', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      var single = {};
+
+      single = element.closest('.single');
+
+      element.on('click', function(e) {
+        if (single.hasClass('open')) {
+          single.removeClass('open');
+          element.html('详&nbsp;情');
+          angular.element('.detail', single).slideUp(200);
+        } else {
+          single.addClass('open');
+          element.html('关&nbsp;闭');
+          angular.element('.detail', single).slideDown(200);
+        }
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+
+//
 //== 头部
   .directive('logout', ['$cookieStore', function($cookieStore) {
     'use strict';
@@ -18,6 +42,7 @@ angular.module('ptcms.directives', [])
     }
 
   }])
+
 
 //
 //== 侧边栏
@@ -113,4 +138,9 @@ angular.module('ptcms.directives', [])
     };
     return { restrict: 'AE', link: link };
   }]);
+
+// 成员列表
+
+
+
 

@@ -9,9 +9,9 @@ angular.module('ptcms.controllers', [])
   function($cookies, $scope, Users) {
     var number = $cookies['_number'];
 
-    Users.all({ user: number }).$promise.then(function(data) {
-      $scope.user = angular.copy(data.user);
-      $scope.menus = angular.copy(data.menus);
+    Users.one({ users_number: number }).$promise.then(function(data) {
+      $scope.user = data.data.user;
+      $scope.menus = data.data.menus;
     });
   }])
 
@@ -43,8 +43,11 @@ angular.module('ptcms.controllers', [])
 
 //
 //== 小组管理
-  .controller('groupmanageCtrl', ['$scope', function($scope) {
-
+  .controller('groupmanageCtrl', ['$scope', 'Groups', function($scope, Groups) {
+    Groups.all().$promise.then(function(data) {
+      if (data.status !== 1) return alert('发生错误!');
+      $scope.groups = data.data.groups;
+    });
   }])
 
 //
@@ -124,6 +127,7 @@ angular.module('ptcms.controllers', [])
       });
     });
 
+    // 撤销班级修改
     $scope.$on('revokeModifyClasse', function() {
       $scope.isVisible = true;
       $scope.classename = '';
@@ -136,6 +140,26 @@ angular.module('ptcms.controllers', [])
 //
 //== 项目管理
   .controller('projectmanageCtrl', ['$scope', function($scope) {
+
+  }])
+
+//
+//== 成员列表
+  .controller('userslistCtrl', ['$scope', 'Users', function($scope, Users) {
+    Users.all().$promise.then(function(data) {
+      $scope.users = data.data.users;
+    });
+  }])
+
+//
+//== 新增成员
+  .controller('usercreateCtrl', ['$scope', function($scope) {
+
+  }])
+
+//
+//== 简历审核
+  .controller('resumecheckCtrl', ['$scope', function($scope) {
 
   }])
 

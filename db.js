@@ -4,10 +4,10 @@ var mongoose = require('mongoose');
 var key = require('./modules/key');
 
 var AutoKey = require('./models/AutoKey');
+var Classe = require('./models/Classe');
 var Grade = require('./models/Grade');
 var Group = require('./models/Group');
 var User = require('./models/User');
-var Classe = require('./modules/Classe');
 
 
 //
@@ -95,16 +95,16 @@ var collections = ['autokeys', 'grades', 'groups', 'users'],
 
 //
 //== 生成管理员
-var callback = function() {
-  mongoose.connection.collections.users.drop(function() {
-    var admin = new User({ number: 1, account: 'admin', username: '管理员', role: '01000100' });
-    admin.save();
+// var callback = function() {
+//   mongoose.connection.collections.users.drop(function() {
+//     var admin = new User({ number: 1, account: 'admin', username: '管理员', role: '01000100', introduction: '管理员具有最高权限' });
+//     admin.save();
 
-    key.set('users', '2', function(doc) {
-      console.log(doc);
-    });
-  });
-};
+//     key.set('users', '2', function(doc) {
+//       console.log(doc);
+//     });
+//   });
+// };
 
 
 var db = mongoose.connection;

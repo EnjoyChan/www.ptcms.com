@@ -1,0 +1,65 @@
+div(class="container-fluid userslist")
+  div.row
+    div.col-md-12
+      ol.breadcrumb
+        li
+          i(class="fa fa-home")
+        li
+          a 人员管理
+        li.active 成员列表
+  div.row
+    div.col-md-12
+      div.users-list
+        table(class="table table-simple table-hover table-info table-condensed table-flow")
+          thead
+            tr
+              th(class="grid-2") 序&nbsp;号
+              th(class="grid-") 账&nbsp;号
+              th(class="grid-") 姓&nbsp;名
+              th(class="grid-") 职&nbsp;务
+              th(class="grid-") 年&nbsp;级
+              th(class="grid-") 班&nbsp;级
+              th(class="grid-") 宿&nbsp;舍
+              th(class="grid-") 联系方式
+              th(class="grid-") Q&nbsp;Q
+              th(class="grid-3") 加入时间
+              th(class="grid-4") 操&nbsp;作
+          tbody(class="user-all single single-{{$index + 1}}" ng-repeat="user in users")
+            tr(class="base")
+              td {{$index + 1}}
+              td(title="{{user.account}}") {{user.account}}
+              td(title="{{user.username}}") {{user.username}}
+              td(title="{{user.role | role}}") {{user.role | role}}
+              td(title="{{user.grade}}") {{user.grade}}
+              td(title="{{user.classe}}") {{user.classe}}
+              td(title="{{user.dormitory}}") {{user.dormitory}}
+              td(title="{{user.phone}}") {{user.phone}}
+              td(title="{{user.qq}}") {{user.qq}}
+              td(title="{{user.jointime | date: 'yyyy-MM-dd'}}") {{user.jointime | date: "yyyy-MM-dd"}}
+              td
+                a(class="link-info" toggle-detail) 详&nbsp;情
+                span(class="separator")
+                a(class="link-warning") 编&nbsp;辑
+            tr(class="detail")
+              td(colspan="11")
+                div.row
+                  div.col-md-12
+                    未完成任务
+                div.row
+                  div.col-md-12
+                    已完成任务
+                div.row
+                  div.col-md-12
+                    当前所在项目
+                div.row
+                  div.col-md-12
+                    历史所在项目
+                div.row
+                  div.col-md-12
+                    当前所在小组
+                div.row
+                  div.col-md-12
+                    历史所在小组
+                div.row
+                  div.col-md-12
+                    个人介绍

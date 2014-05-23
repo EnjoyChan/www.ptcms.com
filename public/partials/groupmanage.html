@@ -9,4 +9,32 @@
       </ol>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="groups-list">
+        <table class="table table-simple table-hover table-info table-condensed table-flow">
+          <thead>
+            <tr>
+              <th class="grid-3">序&nbsp;号</th>
+              <th class="grid-5">名&nbsp;称</th>
+              <th class="grid-4">组&nbsp;长</th>
+              <th class="grid-9">当前成员</th>
+              <th class="grid-4">是否开启</th>
+              <th class="grid-7">操&nbsp;作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="group in groups">
+              <td title="{{$index + 1}}">{{$index + 1}}</td>
+              <td title="{{group.name}}">{{group.name}}</td>
+              <td title="{{group.leader}}">{{group.leader}}</td>
+              <td title="{{group.currentNumber}}">{{group.currentNumber}}</td>
+              <td title="{{group.isOpen}}" class="isopen"><span ng-class="{'label-closed': !group.isOpen, 'label-actived': group.isOpen}" class="label">{{group.isOpen | isopen}}</span></td>
+              <td><a>详&nbsp;情</a><span class="separator"></span><a class="link-warning">修&nbsp;改</a><span class="separator"></span><a class="link-danger">删&nbsp;除</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

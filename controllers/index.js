@@ -4,6 +4,7 @@
 var classeCtrl    = require('./classe');
 var loginCtrl     = require('./login');
 var userCtrl      = require('./user');
+var groupCtrl     = require('./group');
 
 
 //
@@ -30,6 +31,7 @@ module.exports = {
   goIndex: goIndex,
   signup: loginCtrl,
   logout: goLogin,
-  user: userCtrl,
-  classes: classeCtrl
+  users: userCtrl,
+  classes: classeCtrl,
+  groups: groupCtrl
 };

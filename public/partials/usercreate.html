@@ -1,0 +1,93 @@
+
+<div class="container-fluid usercreate">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li><a>人员管理</a></li>
+        <li class="active">新增成员</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 form">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="account" class="col-md-4 control-label">登录账号：</label>
+          <div class="col-md-4">
+            <input type="text" id="account" placeholder="账号" class="account form-control input-sm"/>
+          </div>
+          <div class="tip col-md-3"><span>登录账号，有别于用户名</span></div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-md-4 control-label">密码：</label>
+          <div class="col-md-4">
+            <input type="text" id="password" placeholder="密码" value="123" class="password form-control input-sm"/>
+          </div>
+          <div class="tip col-md-3"><span>默认密码为'123'</span></div>
+        </div>
+        <div class="form-group">
+          <label for="jiontime" class="col-md-4 control-label">加入时间：</label>
+          <div class="col-md-4">
+            <input type="text" id="jiontime" placeholder="加入时间" class="jiontime form-control input-sm"/>
+          </div>
+          <div class="tip col-md-3"><span>默认当前时间</span></div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">担任角色：</label>
+          <div class="col-md-8">
+            <div class="checkboxs clearfix">
+              <div>
+                <input type="checkbox" name="role" value="00000001"/><span>面试</span>
+              </div>
+              <div>
+                <input type="checkbox" name="role" value="00000100"/><span>开发人员</span>
+              </div>
+              <div>
+                <input type="checkbox" name="role" value="00100000"/><span>小组长</span>
+              </div>
+              <div>
+                <input type="checkbox" name="role" value="01000100"/><span>管理员</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">所在小组：</label>
+          <div class="col-md-8">
+            <div class="checkboxs clearfix">
+              <div>
+                <input type="checkbox" name="" value=""/><span>前端组</span>
+              </div>
+              <div>
+                <input type="checkbox" name="" value=""/><span>安卓组</span>
+              </div>
+              <div>
+                <input type="checkbox" name="" value=""/><span>后台组</span>
+              </div>
+              <div>
+                <input type="checkbox" name="" value=""/><span>动画组</span>
+              </div>
+              <div>
+                <input type="checkbox" name="" value=""/><span>编译器组</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-md-8">
+            <buttom class="user-add btn btn-sm btn-warning">确认添加<i class="fa fa-plus"></i></buttom>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4 form-tip">
+      <div class="title"><span>提醒事项</span></div>
+      <ol class="content">
+        <li>一但添加成功，那该人员立刻为工作室成员</li>
+        <li>如需指派小组长，请到类别管理 > 小组管理</li>
+        <li>新用户的其他信息，需有用户自己填写</li>
+      </ol>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+div(class="container-fluid usercreate")
+  div.row
+    div.col-md-12
+      ol.breadcrumb
+        li
+          i(class="fa fa-home")
+        li
+          a 人员管理
+        li.active 新增成员
+  div.row
+    div(class="col-md-8 form")
+      form(class="form-horizontal")
+        div.form-group
+          label(class="col-md-4 control-label" for="account") 登录账号：
+          div.col-md-4
+            input(class="account form-control input-sm" type="text" id="account" placeholder="账号")
+          div(class="tip col-md-3")
+            span 登录账号，有别于用户名
+        div.form-group
+          label(class="col-md-4 control-label" for="password") 密码：
+          div.col-md-4
+            input(class="password form-control input-sm" type="text" id="password" placeholder="密码" value="123")
+          div(class="tip col-md-3")
+            span 默认密码为'123'
+        div.form-group
+          label(class="col-md-4 control-label" for="jiontime") 加入时间：
+          div.col-md-4
+            input(class="jiontime form-control input-sm" type="text" id="jiontime" placeholder="加入时间")
+          div(class="tip col-md-3")
+            span 默认当前时间
+        div.form-group
+          label(class="col-md-4 control-label") 担任角色：
+          div.col-md-8
+            div(class="checkboxs clearfix")
+              div
+                input(type="checkbox" name="role" value="00000001")
+                span 面试
+              div
+                input(type="checkbox" name="role" value="00000100")
+                span 开发人员
+              div
+                input(type="checkbox" name="role" value="00100000")
+                span 小组长
+              div
+                input(type="checkbox" name="role" value="01000100")
+                span 管理员
+        div.form-group
+          label(class="col-md-4 control-label") 所在小组：
+          div.col-md-8
+            div(class="checkboxs clearfix")
+              div
+                input(type="checkbox" name="" value="")
+                span 前端组
+              div
+                input(type="checkbox" name="" value="")
+                span 安卓组
+              div
+                input(type="checkbox" name="" value="")
+                span 后台组
+              div
+                input(type="checkbox" name="" value="")
+                span 动画组
+              div
+                input(type="checkbox" name="" value="")
+                span 编译器组
+        div.form-group
+          div(class="col-sm-offset-4 col-md-8")
+            buttom(class="user-add btn btn-sm btn-warning")
+              确认添加
+              i(class="fa fa-plus")
+    div(class="col-md-4 form-tip")
+      div.title
+        span 提醒事项
+      ol.content
+        li 一但添加成功，那该人员立刻为工作室成员
+        li 如需指派小组长，请到类别管理 > 小组管理
+        li 新用户的其他信息，需有用户自己填写

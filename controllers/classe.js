@@ -78,9 +78,19 @@ var update = function(req, res) {
   });
 };
 
+var one = function(req, res) {
+  res.json({
+    status: 1,
+    data: {
+      method: 'get'
+    }
+  });
+};
+
 module.exports = {
   add: add,
   all: all,
   del: del,
-  update: update
+  update: update,
+  one: one
 };

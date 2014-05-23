@@ -429,6 +429,12 @@ a.link-warning {
 a.link-warning:hover {
   color: #dab10d;
 }
+a.link-danger {
+  color: #d2322d;
+}
+a.link-danger:hover {
+  color: #bd2d29;
+}
 /* reset */
 thead,
 tbody,
@@ -627,8 +633,62 @@ tfoot {
 .classemanage .classe-operation div.checkbox {
   margin-bottom: 30px;
 }
+.userslist .detail {
+  display: none;
+}
+.usercreate .form,
+.usercreate .form-tip {
+  height: 262px;
+}
+.usercreate .form-tip {
+  background-color: #29a8cd;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.usercreate .form-tip .title {
+  margin-bottom: 8px;
+  padding: 15px;
+  color: #fff;
+  font-size: 16px;
+}
+.usercreate .form-tip .content {
+  color: #fff;
+}
+.usercreate .form-tip .content li {
+  margin-top: 6px;
+}
+.usercreate .form-group [class|=col-md] {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+.usercreate .form-group .control-label {
+  letter-spacing: 1px;
+}
+.usercreate .form-group .user-add {
+  margin-left: 8px;
+}
+.usercreate .checkboxs {
+  margin-top: 7px;
+  padding-left: 0;
+}
+.usercreate .checkboxs > div {
+  float: left;
+  margin-right: 22px;
+}
+.usercreate .checkboxs [type=checkbox] {
+  float: none;
+  display: inline-block;
+  margin: 0 4px 3px 0;
+  vertical-align: middle;
+}
+.usercreate .tip {
+  padding-top: 7px;
+}
+.usercreate .tip span {
+  color: #ed9c28;
+}
 .passwordmodify form {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 html,
 body {

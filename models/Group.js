@@ -16,8 +16,8 @@ var groupSchema = new Schema({
     required: true
   },
   createTime: {             // 创建时间
-    type: Date,
-    default: Date.now
+    type: String,
+    default: Date.now()
   },
   currentNumber: {          // 当前成员
     type: [Number]

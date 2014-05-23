@@ -23,7 +23,7 @@ router.use(function(req, res, next) {
     return;
   }
 
-  if (!action.user.isOnline(req, res)) {
+  if (!action.users.isOnline(req, res)) {
     res.redirect(301, '/login');
     return;
   } else {
@@ -48,29 +48,33 @@ router.get('/index', action.goIndex);
 // 登出
 router.use('/logout', action.logout);
 
-// 用户
-router.param('user', function(req, res, next, number) {
-  req.userNumber = number;
+
+//============== 用户
+router.param('users_number', function(req, res, next, number) {
+  req.number = number;
   next();
 });
 
-router.get('/users/:user/all', action.user.getAll);
+router.route('/users/:users_number')
+  .get(action.users.getAllInfo)
+  .put(action.users.update)
+  .delete(action.users.del);
 
-// 班级
+// 查找所有
+router.get('/users', action.users.all);
+
+// 添加
+router.post('/users', action.users.add);
+
+
+//============== 班级
 router.param('classe_number', function(req, res, next, number) {
   req.number = number;
   next();
 });
 
 router.route('/classes/:classe_number')
-  .get(function(req, res, next) {
-    res.json({
-      status: 1,
-      data: {
-        method: 'get'
-      }
-    });
-  })
+  .get(action.classes.one)
   .put(action.classes.update)
   .delete(action.classes.del);
 
@@ -79,6 +83,24 @@ router.post('/classes', action.classes.add);
 
 // 查找所有
 router.get('/classes', action.classes.all);
+
+
+//============== 小组
+router.param('groups_number', function(req, res, next, number) {
+  req.number = number;
+  next();
+});
+
+router.route('/groups/:groups_number')
+  .get(action.groups.one)
+  .put(action.groups.update)
+  .delete(action.groups.del);
+
+// 查找所有
+router.get('/groups', action.groups.all);
+
+// 添加
+router.post('/groups', action.groups.add);
 
 
 //
