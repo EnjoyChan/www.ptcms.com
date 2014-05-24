@@ -6,7 +6,10 @@
 //== 引入
 var User = require('../models/User');
 var roleMenus = require('../config/role.json');
-var key = require('../modules/key');
+
+//
+//== 引入控制器
+var builder = require('./builder');
 var crypto = require('crypto');
 
 
@@ -24,8 +27,8 @@ var isOnline = function(req, res) {
 
 // 用户信息
 var getAllInfo = function(req, res) {
-  var number = req.number,
-      query = { number: number },
+  var _id = req._id,
+      query = { _id: _id },
       roleNumber = 0,
       menus = {},
       role = {},
@@ -37,7 +40,7 @@ var getAllInfo = function(req, res) {
     roleNumber = parseInt(user.role, 2);
     menus = roleMenus[roleNumber].menus;
 
-    base.number = user.number;
+    base.id = user._id;
     base.account = user.account;
     base.username = user.username;
     base.introduction = user.introduction;
@@ -45,7 +48,6 @@ var getAllInfo = function(req, res) {
       number: roleMenus[roleNumber].number,
       name: roleMenus[roleNumber].name
     }
-    console.dir(user);
     res.json({ status: 1, data: { user: base, menus: menus } });
   });
 };
@@ -74,12 +76,12 @@ var add = function(req, res) {
   role = unionRole.apply(null, role);
 
 
-  var tmp = function(key) {
+  var tmp = function(seq) {
     User.findOne(query, function(err, doc) {
       if (err) return console.error(err);
       if (doc) return res.json({ status: 0, msg: '登录账号已存在' });
       newUser = new User({
-        number: key,
+        _id: seq,
         account: account,
         password: password,
         jointime: jointime,
@@ -94,7 +96,7 @@ var add = function(req, res) {
     });
   };
 
-  key.increase('users', tmp);
+  builder.getNextSequence('users', tmp);
 };
 
 // 删除

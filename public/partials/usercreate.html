@@ -10,24 +10,24 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8 form">
+    <div class="form col-md-8 col-md-offset-1">
       <form class="form-horizontal">
         <div class="form-group">
           <label for="account" class="col-md-4 control-label">登录账号：</label>
           <div class="col-md-4">
             <input type="text" id="account" placeholder="登录账号" ng-model="useraccount" class="account form-control input-sm"/>
           </div>
-          <div class="tip col-md-4"><span>有别用户名，由数字和字母构成</span></div>
+          <div class="tip col-md-4"><span>有别于用户名，由数字和字母构成</span></div>
         </div>
         <div class="form-group">
-          <label for="password" class="col-md-4 control-label">密码：</label>
+          <label for="password" class="col-md-4 control-label">登录密码：</label>
           <div class="col-md-4">
             <input type="password" id="password" placeholder="密码" value="123" ng-model="userpassword" class="password form-control input-sm"/>
           </div>
           <div class="tip col-md-3"><span>默认密码为'123'</span></div>
         </div>
         <div class="form-group">
-          <label for="jointime" class="col-md-4 control-label">加入时间：</label>
+          <label for="jointime" class="col-md-4 control-label">加入团队时间：</label>
           <div class="col-md-4">
             <input type="text" id="jointime" placeholder="格式：2014-12-12" ng-model="userjointime" class="jointime form-control input-sm"/>
           </div>
@@ -44,7 +44,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-4 control-label">所在小组：</label>
+          <label class="col-md-4 control-label">所在开发小组：</label>
           <div class="col-md-8">
             <div class="checkboxs clearfix">
               <div ng-repeat="group in groups">
@@ -62,15 +62,6 @@
           <div class="col-sm-offset-4 col-md-8"><span class="msg">{{addUserMsg}}</span></div>
         </div>
       </form>
-    </div>
-    <div class="col-md-4 form-tip">
-      <div class="title"><span>提醒事项</span></div>
-      <ol class="content">
-        <li>一但添加成功，那该人员立刻为工作室成员</li>
-        <li>如需指派小组长，请到类别管理 > 小组管理</li>
-        <li>新用户的其他信息，需有用户自己填写</li>
-        <li>登录账号，最好由数字或字母构成，其中登录账号有别于用户名</li>
-      </ol>
     </div>
   </div>
 </div>

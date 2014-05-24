@@ -30,14 +30,14 @@ div(class="container-fluid classemanage")
               td
                 a(go-modify-classe) 修&nbsp;改
                 span(class="separator")
-                a(class="link-warning" delete-classe data-number="{{classe.number}}") 删&nbsp;除
+                a(class="link-warning" delete-classe data-id="{{classe._id}}") 删&nbsp;除
     div(class="col-md-4")
       div.classe-operation
         div.header
           i(class="fa fa-cog")
           span 班级操作
         form
-          input(type="hidden" ng-model="classenumber")
+          input(type="hidden" ng-model="classeid")
           div.form-group
             label(for="classename") 班级名称
             input(class="form-control" id="classename"  type="text" placeholder="班级名称" ng-model="classename")

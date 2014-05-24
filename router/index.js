@@ -50,12 +50,12 @@ router.use('/logout', action.logout);
 
 
 //============== 用户
-router.param('users_number', function(req, res, next, number) {
-  req.number = number;
+router.param('users_id', function(req, res, next, id) {
+  req._id = id;
   next();
 });
 
-router.route('/users/:users_number')
+router.route('/users/:users_id')
   .get(action.users.getAllInfo)
   .put(action.users.update)
   .delete(action.users.del);
@@ -68,12 +68,12 @@ router.post('/users', action.users.add);
 
 
 //============== 班级
-router.param('classe_number', function(req, res, next, number) {
-  req.number = number;
+router.param('classe_id', function(req, res, next, id) {
+  req._id = id;
   next();
 });
 
-router.route('/classes/:classe_number')
+router.route('/classes/:classe_id')
   .get(action.classes.one)
   .put(action.classes.update)
   .delete(action.classes.del);
@@ -86,12 +86,12 @@ router.get('/classes', action.classes.all);
 
 
 //============== 小组
-router.param('groups_number', function(req, res, next, number) {
-  req.number = number;
+router.param('groups_id', function(req, res, next, id) {
+  req._id = id;
   next();
 });
 
-router.route('/groups/:groups_number')
+router.route('/groups/:groups_id')
   .get(action.groups.one)
   .put(action.groups.update)
   .delete(action.groups.del);

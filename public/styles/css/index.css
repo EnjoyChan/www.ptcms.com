@@ -668,6 +668,29 @@ tfoot {
 .dashboard .announcement > .header {
   background-color: #ed9c28;
 }
+.groupmanage .form-horizontal {
+  margin-right: 12px;
+}
+.groupmanage .form-horizontal label {
+  padding-left: 6px;
+}
+.groupmanage .form-horizontal textarea {
+  resize: none;
+  height: 75px;
+}
+.groupmanage .form-horizontal [type=checkbox] {
+  margin-top: 11px;
+}
+.groupmanage .add-group {
+  position: relative;
+  top: 47px;
+}
+.groupmanage .add-group button {
+  margin-top: 0 !important;
+}
+.groupmanage .begin-time {
+  margin-top: 3px;
+}
 .classemanage .isopen {
   letter-spacing: 2px;
 }
@@ -699,21 +722,9 @@ tfoot {
 .userslist .detail {
   display: none;
 }
-.usercreate .form,
-.usercreate .form-tip {
+.usercreate .form {
+  margin-top: 40px;
   height: 262px;
-}
-.usercreate .form-tip .title {
-  margin-bottom: 4px;
-  padding: 15px;
-  color: #333;
-  font-size: 16px;
-}
-.usercreate .form-tip .content {
-  color: #333;
-}
-.usercreate .form-tip .content li {
-  margin-top: 6px;
 }
 .usercreate .form-group [class|=col-md] {
   padding-right: 8px;
@@ -858,4 +869,12 @@ body {
   color: #999;
   font-size: 13px;
   line-height: 30px;
+}
+.page-info {
+  position: absolute;
+  top: 50px;
+  right: 15px;
+}
+.page-info .alert {
+  margin-bottom: 8px;
 }

@@ -131,8 +131,7 @@
       "submenus": [
         { "name": "年级管理", "level": 10001, "uisref": "grademanage" },
         { "name": "小组管理", "level": 10002, "uisref": "groupmanage" },
-        { "name": "班级管理", "level": 10003, "uisref": "classemanage" },
-        { "name": "项目管理", "level": 10004, "uisref": "projectmanage" }
+        { "name": "班级管理", "level": 10003, "uisref": "classemanage" }
       ]
     }, {
       "name": "人员管理",
@@ -148,7 +147,7 @@
       "level": "30000",
       "class": "fa-tasks",
       "submenus": [
-        { "name": "创建项目/任务", "level": 30001, "uisref": "projectcreate" }
+        { "name": "创建项目/模块", "level": 30001, "uisref": "projectcreate" }
       ]
     }, {
       "name": "面试管理",

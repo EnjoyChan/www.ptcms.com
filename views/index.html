@@ -74,6 +74,9 @@
     <div class="page-footer">
       <div class="copyright"><span class="content">2014 © Designed and built with all the love in the world by xbird.</span></div>
     </div>
+    <div class="page-info">
+      <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
     <script src="/vendor/jquery/jquery-1.11.0.min.js"></script>
     <script src="/vendor/angular/angular.js"></script>
     <script src="/vendor/angular-cookies/angular-cookies.js"></script>

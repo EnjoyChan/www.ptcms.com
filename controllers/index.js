@@ -12,9 +12,9 @@ var groupCtrl     = require('./group');
 
 // 获取登录页
 var goLogin = function(req, res) {
-  res.clearCookie('_username');
+  res.clearCookie('_id');
   res.clearCookie('_account');
-  res.clearCookie('_number');
+  res.clearCookie('_username');
   res.render('login.html');
 };
 

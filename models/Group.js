@@ -6,32 +6,17 @@ var Schema = mongoose.Schema;
 //
 //== Schema
 var groupSchema = new Schema({
-  number: {                 // 序号
-    type: Number,
-    required: true,
-    unique: true
-  },
-  name: {                   // 名称
-    type: String,
-    required: true
-  },
-  createTime: {             // 创建时间
-    type: String,
-    default: Date.now()
-  },
-  currentNumber: {          // 当前成员
-    type: [Number]
-  },
-  historNumber: {           // 历史成员
-    type: [Number]
-  },
-  isOpen: {                 // 是否开启
-    type: Boolean,
-    default: false
-  },
-  leader: {                 // 小组长
-    type: Number
-  }
+  _id             : Number,
+  endTime         : String,
+  description     : String,
+  name            : { type: String,  required: true },
+  beginTime       : { type: String,  default: Date.now() },
+  createTime      : { type: String,  default: Date.now() },
+  isOpen          : { type: Boolean, default: false },
+  currentLeader   : { type: Number,  ref: 'User' },
+  historyLeaders  : [{ type: Number, ref: 'User' }],
+  currentStaffs   : [{ type: Number, ref: 'User' }],
+  hostoryStaffs   : [{ type: Number, ref: 'User' }]
 });
 
 

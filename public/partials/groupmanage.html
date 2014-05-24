@@ -9,28 +9,87 @@
       </ol>
     </div>
   </div>
+  <div style="margin-top: 20px;" class="row">
+    <div class="col-md-3">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-md-4 control-label">名&nbsp;称：</label>
+          <div class="col-md-8">
+            <input type="text" placeholder="名称" ng-model="groupname" class="form-control input-sm"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">组&nbsp;长：</label>
+          <div class="col-md-8">
+            <select placeholder="小组长" ng-model="groupleader" class="form-control input-sm">
+              <option value="">请选择人员</option>
+              <option ng-repeat="user in users" value="{{user._id}}">{{user.username}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-md-2 control-label">详介绍：</label>
+          <div class="col-md-10">
+            <textarea placeholder="详细介绍..." ng-model="groupdescription" class="form-control input-sm"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <label class="col-md-4 control-label">是否开启：</label>
+          <div class="col-md-8">
+            <input type="checkbox" ng-model="groupisopen"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4 control-label">启动时间：</label>
+          <div class="begin-time col-md-8">
+            <input type="text" placeholder="启动时间" ng-model="groupbegintime" class="form-control input-sm"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+      <div class="form-horizontal">
+        <div class="form-group">
+          <div class="add-group">
+            <button add-group="add-group" ng-show="status !== 'update'" class="btn btn-sm btn-info btn-block">确认添加</button>
+            <button update-group="update-group" ng-show="status === 'update'" class="btn btn-sm btn-warning btn-block">确认修改</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="groups-list">
         <table class="table table-simple table-hover table-info table-condensed table-flow">
           <thead>
             <tr>
-              <th class="grid-3">序&nbsp;号</th>
-              <th class="grid-5">名&nbsp;称</th>
-              <th class="grid-4">组&nbsp;长</th>
-              <th class="grid-9">当前成员</th>
-              <th class="grid-4">是否开启</th>
-              <th class="grid-7">操&nbsp;作</th>
+              <th class="grid-2">序&nbsp;号</th>
+              <th class="grid-4">名&nbsp;称</th>
+              <th class="grid-3">组&nbsp;长</th>
+              <th class="grid-"> 当前成员</th>
+              <th class="grid-3">是否开启</th>
+              <th class="grid-4">启动时间</th>
+              <th class="grid-5">操&nbsp;作</th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="group in groups">
               <td title="{{$index + 1}}">{{$index + 1}}</td>
               <td title="{{group.name}}">{{group.name}}</td>
-              <td title="{{group.leader}}">{{group.leader}}</td>
+              <td title="{{group.leader}}">{{group.leader || '还未任命'}}</td>
               <td title="{{group.currentNumber}}">{{group.currentNumber}}</td>
               <td title="{{group.isOpen}}" class="isopen"><span ng-class="{'label-closed': !group.isOpen, 'label-actived': group.isOpen}" class="label">{{group.isOpen | isopen}}</span></td>
-              <td><a>详&nbsp;情</a><span class="separator"></span><a class="link-warning">修&nbsp;改</a><span class="separator"></span><a class="link-danger">删&nbsp;除</a></td>
+              <td title="{{group.beginTime | date: 'yyyy-MM-dd'}}">{{group.beginTime | date: 'yyyy-MM-dd'}}</td>
+              <td><a>详&nbsp;情</a><span class="separator"></span><a go-update-group="go-update-group" class="link-warning">修&nbsp;改</a><span class="separator"></span><a delete-group="delete-group" class="link-danger">删&nbsp;除</a></td>
             </tr>
           </tbody>
         </table>

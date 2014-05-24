@@ -7,12 +7,18 @@ angular.module('ptcms.controllers', [])
     '$scope',
     'Users',
   function($cookies, $scope, Users) {
-    var number = $cookies['_number'];
+    var userid = $cookies['_id'];
 
-    Users.one({ users_number: number }).$promise.then(function(data) {
+    Users.one({ user_id: userid }).$promise.then(function(data) {
       $scope.user = data.data.user;
       $scope.menus = data.data.menus;
     });
+
+    $scope.alerts = [];
+
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
   }])
 
 //
@@ -43,10 +49,83 @@ angular.module('ptcms.controllers', [])
 
 //
 //== 小组管理
-  .controller('groupmanageCtrl', ['$scope', 'Groups', function($scope, Groups) {
+  .controller('groupmanageCtrl', ['$scope', 'Groups', 'Users', function($scope, Groups, Users) {
+
+    $scope.status = 'normal';
+    $scope._id = '';
+
+    // 定义scope
+    Users.all().$promise.then(function(data) {
+      if (data.status !== 1) return alert('发生错误!');
+      $scope.users = data.data.users;
+    });
+
     Groups.all().$promise.then(function(data) {
       if (data.status !== 1) return alert('发生错误!');
-      $scope.groups = data.data.groups;
+      $scope.groups = data.data.groups || [];
+    });
+
+    // 定义方法
+    var updateForm = function(name, leader, description, isopen, begintime) {
+      $scope.groupname        = name        || '';
+      $scope.groupleader      = leader      || '';
+      $scope.groupdescription = description || '';
+      $scope.groupisopen      = isopen      || false;
+      $scope.groupbegintime   = begintime   || '';
+    };
+
+    // 事件定义
+    $scope.$on('addGroup', function() {
+      var newGroup = {
+        name        : $scope.groupname,
+        leader      : $scope.groupleader,
+        description : $scope.groupdescription,
+        isopen      : $scope.groupisopen,
+        begintime   : $scope.groupbegintime
+      };
+      if (!newGroup.name) { return alert('名称不能为空'); }
+      Groups.save(newGroup).$promise.then(function(data) {
+        if (data.status !== 1) return alert(data.msg || '发生错误!');
+        $scope.groups.unshift(data.data.group);
+        updateForm();
+      });
+    });
+
+    $scope.$on('goUpdateGroup', function(e, group) {
+      $scope._id = group._id;
+      updateForm(group.name, group.leader, group.description, group.isOpen, group.beginTime);
+      $scope.status = 'update';
+      $scope.$saferApply();
+    });
+
+    $scope.$on('updateGroup', function(e, id) {
+      var updateGroup = {
+        group_id    : $scope._id,
+        name        : $scope.groupname,
+        leader      : $scope.groupleader,
+        description : $scope.groupdescription,
+        isopen      : $scope.groupisopen,
+        begintime   : $scope.groupbegintime
+      };
+      Groups.update(updateGroup).$promise.then(function(data) {
+        if (data.status !== 1) return alert(data.msg || '发生错误');
+        alert(data.msg);
+        Groups.all().$promise.then(function(data) {
+          if (data.status !== 1) return alert('发生错误!');
+          $scope.groups = data.data.groups || [];
+        });
+      });
+      // $scope.$saferApply();
+    });
+
+    $scope.$on('deleteGroup', function(e, group) {
+      Groups.delete({ group_id: group._id}).$promise.then(function(data) {
+        if (data.status !== 1) return alert(data.msg || '发生错误');
+        Groups.all().$promise.then(function(data) {
+          if (data.status !== 1) return alert('发生错误!');
+          $scope.groups = data.data.groups || [];
+        });
+      });
     });
   }])
 
@@ -82,9 +161,9 @@ angular.module('ptcms.controllers', [])
     });
 
     // 删除班级
-    $scope.$on('deleteClasse', function(e, number) {
-      if (!number) return;
-      Classes.delete({ classe_number: number }).$promise.then(function(data) {
+    $scope.$on('deleteClasse', function(e, id) {
+      if (!id) return;
+      Classes.delete({ classe_id: id }).$promise.then(function(data) {
         Classes.all().$promise.then(function(data) {
           if (data.status !== 1) return alert('发生错误!');
           $scope.classes = data.data.classes;
@@ -95,7 +174,7 @@ angular.module('ptcms.controllers', [])
     // go 修改班级
     $scope.$on('goModifyClasse', function(e, classe) {
       if (!classe) return;
-      $scope.classenumber = classe.number;
+      $scope.classeid = classe._id;
       $scope.classename = classe.name;
       $scope.classealias = classe.alias;
       $scope.isopen = classe.isOpen;
@@ -108,12 +187,11 @@ angular.module('ptcms.controllers', [])
     $scope.$on('modifyClasse', function(e) {
       var classe = {};
 
-      classe.classe_number = $scope.classenumber || '';
+      classe.classe_id = $scope.classeid || '';
       classe.name = $scope.classename || '';
       classe.alias = $scope.classealias || '';
       classe.isopen = $scope.isopen || false;
 
-      console.dir(classe);
 
       Classes.update(classe).$promise.then(function() {
         $scope.isVisible = true;
@@ -225,12 +303,11 @@ angular.module('ptcms.controllers', [])
 //== 我的信息
   .controller('myprofileCtrl', ['$scope', '$cookies', 'Users', function($scope, $cookies, Users) {
     // 定义scope
-    var number = $cookies['_number'];
+    var userid = $cookies['_id'];
 
     $scope.normal = true;
 
-    Users.one({ users_number: number }).$promise.then(function(data) {
-      console.log(data);
+    Users.one({ users_id: userid }).$promise.then(function(data) {
       $scope.info = data.data.user;
     });
 
@@ -242,7 +319,7 @@ angular.module('ptcms.controllers', [])
     // 取消编辑
     $scope.$on('revokeEdit', function() {
       $scope.normal = true;
-      Users.one({ users_number: number }).$promise.then(function(data) {
+      Users.one({ users_id: userid }).$promise.then(function(data) {
         $scope.info = data.data.user;
         $scope.$saferApply();
       });

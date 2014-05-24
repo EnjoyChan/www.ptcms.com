@@ -78,6 +78,8 @@ html(ng-app="ptcms")
     div.page-footer
       div.copyright
         span.content 2014 © Designed and built with all the love in the world by xbird.
+    div.page-info
+      alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)") {{alert.msg}}
     script(src="/vendor/jquery/jquery-1.11.0.min.js")
     script(src="/vendor/angular/angular.js")
     script(src="/vendor/angular-cookies/angular-cookies.js")

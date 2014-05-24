@@ -88,6 +88,45 @@ angular.module('ptcms.directives', [])
     };
   }])
 
+// 小组管理
+  .directive('addGroup', [function() {
+    'use strict';
+    var link = function(scope, element) {
+      element.on('click', function(e) {
+        scope.$emit('addGroup');
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('goUpdateGroup', [function() {
+    'use strict';
+    var link = function(scope, element) {
+      element.on('click', function(e) {
+        scope.$emit('goUpdateGroup', scope.group);
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('deleteGroup', [function() {
+    'use strict';
+    var link = function(scope, element) {
+      element.on('click', function(e) {
+        scope.$emit('deleteGroup', scope.group);
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('updateGroup', [function() {
+    'use strict';
+    var link = function(scope, element) {
+      element.on('click', function(e) {
+        scope.$emit('updateGroup');
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+
+
 // 班级管理
   .directive('addClasse', [function() {
     'use strict';
@@ -102,7 +141,7 @@ angular.module('ptcms.directives', [])
     'use strict';
     var link = function(scope, element, attrs) {
       element.on('click', function(e) {
-        scope.$emit('deleteClasse', element.data('number'));
+        scope.$emit('deleteClasse', element.data('id'));
       });
     };
     return { restrict: 'AE', link: link };

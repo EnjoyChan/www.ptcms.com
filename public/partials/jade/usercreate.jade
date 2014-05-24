@@ -8,22 +8,22 @@ div(class="container-fluid usercreate")
           a 人员管理
         li.active 新增成员
   div.row
-    div(class="col-md-8 form")
+    div(class="form col-md-8 col-md-offset-1")
       form(class="form-horizontal")
         div.form-group
           label(class="col-md-4 control-label" for="account") 登录账号：
           div.col-md-4
             input(class="account form-control input-sm" type="text" id="account" placeholder="登录账号" ng-model="useraccount")
           div(class="tip col-md-4")
-            span 有别用户名，由数字和字母构成
+            span 有别于用户名，由数字和字母构成
         div.form-group
-          label(class="col-md-4 control-label" for="password") 密码：
+          label(class="col-md-4 control-label" for="password") 登录密码：
           div.col-md-4
             input(class="password form-control input-sm" type="password" id="password" placeholder="密码" value="123" ng-model="userpassword")
           div(class="tip col-md-3")
             span 默认密码为'123'
         div.form-group
-          label(class="col-md-4 control-label" for="jointime") 加入时间：
+          label(class="col-md-4 control-label" for="jointime") 加入团队时间：
           div.col-md-4
             input(class="jointime form-control input-sm" type="text" id="jointime" placeholder="格式：2014-12-12" ng-model="userjointime")
           div(class="tip col-md-3")
@@ -36,7 +36,7 @@ div(class="container-fluid usercreate")
                 input(type="checkbox" value="{{role}}" ng-checked="selectedRoles.indexOf(role) > -1" ng-click="toggleselectedRoles(role)")
                 span {{role | role}}
         div.form-group
-          label(class="col-md-4 control-label") 所在小组：
+          label(class="col-md-4 control-label") 所在开发小组：
           div.col-md-8
             div(class="checkboxs clearfix")
               div(ng-repeat="group in groups")
@@ -50,11 +50,3 @@ div(class="container-fluid usercreate")
         div.form-group
           div(class="col-sm-offset-4 col-md-8")
             span(class="msg") {{addUserMsg}}
-    div(class="col-md-4 form-tip")
-      div.title
-        span 提醒事项
-      ol.content
-        li 一但添加成功，那该人员立刻为工作室成员
-        li 如需指派小组长，请到类别管理 > 小组管理
-        li 新用户的其他信息，需有用户自己填写
-        li 登录账号，最好由数字或字母构成，其中登录账号有别于用户名

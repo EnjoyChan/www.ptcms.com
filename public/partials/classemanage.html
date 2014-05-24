@@ -30,7 +30,7 @@
               <td title="{{classe.alias}}">{{classe.alias}}</td>
               <td title="{{classe.createTime | date: 'yyyy-MM-dd'}}">{{classe.createTime | date: "yyyy-MM-dd"}}</td>
               <td title="{{classe.isOpen}}" class="isopen"><span ng-class="{'label-closed': !classe.isOpen, 'label-actived': classe.isOpen}" class="label">{{classe.isOpen | isopen}}</span></td>
-              <td><a go-modify-classe="go-modify-classe">修&nbsp;改</a><span class="separator"></span><a delete-classe="delete-classe" data-number="{{classe.number}}" class="link-warning">删&nbsp;除</a></td>
+              <td><a go-modify-classe="go-modify-classe">修&nbsp;改</a><span class="separator"></span><a delete-classe="delete-classe" data-id="{{classe._id}}" class="link-warning">删&nbsp;除</a></td>
             </tr>
           </tbody>
         </table>
@@ -40,7 +40,7 @@
       <div class="classe-operation">
         <div class="header"><i class="fa fa-cog"></i><span>班级操作</span></div>
         <form>
-          <input type="hidden" ng-model="classenumber"/>
+          <input type="hidden" ng-model="classeid"/>
           <div class="form-group">
             <label for="classename">班级名称</label>
             <input id="classename" type="text" placeholder="班级名称" ng-model="classename" class="form-control"/>

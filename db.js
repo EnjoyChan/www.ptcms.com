@@ -1,13 +1,17 @@
 //
 //== 模块依赖
-var mongoose = require('mongoose');
-var key = require('./modules/key');
+var mongoose      = require('mongoose');
 
-var AutoKey = require('./models/AutoKey');
-var Classe = require('./models/Classe');
-var Grade = require('./models/Grade');
-var Group = require('./models/Group');
-var User = require('./models/User');
+var Sequence      = require('./models/Sequence');
+var Classe        = require('./models/Classe');
+var Grade         = require('./models/Grade');
+var Group         = require('./models/Group');
+var User          = require('./models/User');
+
+
+//
+//== 引入控制器
+var builder = require('./controllers/builder');
 
 
 //
@@ -17,44 +21,53 @@ mongoose.connect('mongodb://localhost/ptcms');
 
 //
 //== 定义变量
-var collections = ['autokeys', 'grades', 'groups', 'users'],
-    flag = false, len, tmp, i;
+var flag = false, len, tmp, i, db;
 
+db = mongoose.connection;
 
-//
-//== 删除所有collection
+var buildSequences = function() {
+  new Sequence({ _id: 'users'     }).save();
+  new Sequence({ _id: 'tasks'     }).save();
+  new Sequence({ _id: 'grades'    }).save();
+  new Sequence({ _id: 'groups'    }).save();
+  new Sequence({ _id: 'modules'   }).save();
+  new Sequence({ _id: 'classes'   }).save();
+  new Sequence({ _id: 'projects'  }).save();
+  new Sequence({ _id: 'feedbacks' }).save();
+  console.log('###### 生成所有新的自动递增序列字段');
+};
+
+var buildAdmin = function() {
+  builder.getNextSequence('users', function(seq) {
+    var admin = new User({
+      _id: seq,
+      account: 'admin',
+      username: '管理员',
+      role: '01000000',
+      introduction: '管理员具有最高权限'
+    });
+    admin.save(function() {
+      console.log('###### 生成新的管理员: admin');
+    });
+  });
+};
+
+// Create Auto-Incrementing Sequence Field
 // var callback = function() {
-//   mongoose.connection.collections.autokeys.drop(function() {
-//     console.log('##Drop autokeys collections!\n');
-//   });
-
-//   mongoose.connection.collections.grades.drop(function() {
-//     console.log('##Drop grades collections!\n');
-//   });
-
-//   mongoose.connection.collections.users.drop(function() {
-//     console.log('##Drop users collections!\n');
-//   });
-
-//   mongoose.connection.collections.groups.drop(function() {
-//     console.log('##Drop groups collections!\n');
-//   });
+//   var Sequences = db.collections.sequences;
+//   if (Sequences) {
+//     Sequences.drop(function() {
+//       console.log('###### 删除自动递增序列字段');
+//       buildSequences();
+//     });
+//   } else {
+//     buildSequencess();
+//   };
 // };
 
-
-//
-//== 生成autokeys collections
 // var callback = function() {
-//   mongoose.connection.collections.autokeys.drop(function() {
-//     for (i = 0, len = collections.length; i < len; i += 1) {
-//       tmp = collections[i];
-//       var autoKey = new AutoKey({
-//         name: tmp
-//       });
-//       autoKey.save();
-//     }
-
-//     console.log('Generate autokeys collections data!');
+//   builder.getNextSequence('classes', function(seq) {
+//     console.log(seq);
 //   });
 // };
 
@@ -68,13 +81,8 @@ var collections = ['autokeys', 'grades', 'groups', 'users'],
 //     new Grade({ number: 3, name: '2011届', isGraduation: false }).save();
 //     new Grade({ number: 4, name: '2012届', isGraduation: false }).save();
 //     new Grade({ number: 5, name: '2013届', isGraduation: false }).save();
-
-//     key.set('grades', '6', function(doc) {
-//       console.log(doc);
-//     });
-//   });c
+//   });
 // };
-
 
 //
 //== 生成小组
@@ -95,16 +103,19 @@ var collections = ['autokeys', 'grades', 'groups', 'users'],
 
 //
 //== 生成管理员
-var callback = function() {
-  mongoose.connection.collections.users.drop(function() {
-    var admin = new User({ number: 1, account: 'admin', username: '管理员', role: '01000000', introduction: '管理员具有最高权限' });
-    admin.save();
-
-    key.set('users', '2', function(doc) {
-      console.log(doc);
-    });
-  });
-};
+// var callback = function() {
+//   var conditions = { role: '01000000' };
+//   User.find(conditions, function(err, users) {
+//     if (users.length !== 0) {
+//       User.remove(conditions, function() {
+//         console.log('###### 删除所有管理员');
+//         buildAdmin();
+//       });
+//       return;
+//     }
+//     buildAdmin();
+//   });
+// };
 
 
 var db = mongoose.connection;

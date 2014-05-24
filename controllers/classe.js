@@ -3,9 +3,13 @@
 
 
 //
-//== 引入
-var Classe = require('../models/Classe');
-var key = require('../modules/key');
+//== 引入模型
+var Classe      = require('../models/Classe');
+
+
+//
+//== 引入控制器
+var builder = require('./builder');
 
 
 //
@@ -19,12 +23,12 @@ var add = function(req, res) {
       query     = { name: name },
       newclasse = {};
 
-  var tmp = function(key) {
+  var tmp = function(seq) {
     Classe.findOne(query, function(err, classe) {
       if (err) return console.error(err);
       if (classe) return res.json({ status: 0, msg: '班级名称重复', classe: classe });
       newclasse = new Classe({
-        number: key,
+        _id: seq,
         name: name,
         alias: alias,
         isOpen: isOpen
@@ -36,7 +40,7 @@ var add = function(req, res) {
     });
   };
 
-  key.increase('classes', tmp);
+  builder.getNextSequence('classes', tmp);
 
 };
 
@@ -44,22 +48,19 @@ var add = function(req, res) {
 var all = function(req, res) {
   Classe.find(function(err, classes) {
     if (err) return console.error(err);
-    res.json({
-      status: 1,
-      data: { classes: classes }
-    });
+    res.json({ status: 1, data: { classes: classes } });
   });
 };
 
 // 删除
 var del = function(req, res) {
-  var number = req.number,
+  var _id = req._id,
       query = {};
-  if (!number) return res.json({ status: 0, msg: '发生错误' });
-  query.number = number;
+  if (!_id) return res.json({ status: 0, msg: '发生错误' });
+  query._id = _id;
   Classe.findOneAndRemove(query, function(err, classe) {
     if (err) return console.error(err);
-    res.json({ status: 1, msg: '删除成功', data: { number: classe.number } });
+    res.json({ status: 1, msg: '删除成功', data: { classe: classe } });
   });
 };
 
@@ -67,7 +68,7 @@ var del = function(req, res) {
 var update = function(req, res) {
   var query = {}, update = {};
 
-  query.number = req.number;
+  query._id = req._id;
   update.name = req.body.name;
   update.alias = req.body.alias;
   update.isOpen = req.body.isopen;

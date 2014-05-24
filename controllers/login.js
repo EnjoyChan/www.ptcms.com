@@ -27,7 +27,7 @@ var login = function(req, res) {
     // 密码不正确
     if (dbPassword !== ftPassword) return res.json({ status: 0, msg: '密码不正确' });
 
-    res.cookie('_number', user.number);
+    res.cookie('_id', user._id);
     res.cookie('_account', account);
     res.cookie('_username', user.username);
     res.json({ status: 1 });
