@@ -1,0 +1,61 @@
+[
+  {
+    "name": "类别管理",
+    "level": "10000",
+    "class": "fa-list",
+    "submenus": [
+      { "name": "年级管理", "level": 10001, "uisref": "grademanage" },
+      { "name": "小组管理", "level": 10002, "uisref": "groupmanage" },
+      { "name": "班级管理", "level": 10003, "uisref": "classemanage" },
+      { "name": "项目管理", "level": 10004, "uisref": "projectmanage" }
+    ]
+  }, {
+    "name": "人员管理",
+    "level": "20000",
+    "class": "fa-users",
+    "submenus": [
+      { "name": "成员列表", "level": 20001, "uisref": "userslist" },
+      { "name": "新增成员", "level": 20002, "uisref": "usercreate" },
+      { "name": "简历审核", "level": 20003, "uisref": "resumecheck" }
+    ]
+  }, {
+    "name": "任务管理",
+    "level": "30000",
+    "class": "fa-tasks",
+    "submenus": [
+      { "name": "创建项目", "level": 30001, "uisref": "projectcreate" },
+      { "name": "我的任务", "level": 30002, "uisref": "mytasks" },
+      { "name": "任务分配", "level": 30003, "uisref": "taskassign" },
+      { "name": "任务评定", "level": 30004, "uisref": "taskassess" },
+      { "name": "任务列表", "level": 30005, "uisref": "taskslist" }
+    ]
+  }, {
+    "name": "面试管理",
+    "level": "40000",
+    "class": "fa-file-text-o",
+    "submenus": [
+      { "name": "面试审核", "level": 40001, "uisref": "auditioncheck" },
+      { "name": "面试评定", "level": 40002, "uisref": "auditionassess" },
+      { "name": "面试人员", "level": 40003, "uisref": "auditionstaff" },
+      { "name": "面试结果", "level": 40004, "uisref": "auditionresult" }
+    ]
+  }, {
+    "name": "团队信息",
+    "level": "50000",
+    "class": "fa-info",
+    "submenus": [
+      { "name": "公告发布", "level": 50001, "uisref": "announcementpublish" },
+      { "name": "信息维护", "level": 50002, "uisref": "informationmaintain" },
+      { "name": "公告查看", "level": 50003, "uisref": "announcementview" },
+      { "name": "关于团队", "level": 50004, "uisref": "aboutteam" }
+    ]
+  }, {
+    "name": "我的账号",
+    "level": "60000",
+    "class": "fa-user",
+    "submenus": [
+      { "name": "密码修改", "level": 60001, "uisref": "passwordmodify" },
+      { "name": "个人信息", "level": 60002, "uisref": "myprofile" }
+    ]
+  }
+]
