@@ -10,6 +10,59 @@
   }
 }
 
+.dashboard {
+  .welcome {
+    margin: 0px 0 20px 0;
+    font-size: 24px;
+  }
+  .announcement,
+  .tips {
+    min-height: 150px;
+    > .header {
+      height: 30px;
+      padding: 0 15px;
+      background-color: #29a8cd;
+      > span {
+        color: #fff;
+        line-height: 30px;
+        letter-spacing: 1px;
+      }
+      i {
+        color: #fff;
+      }
+    }
+    > .content {
+      padding: 8px 15px;
+      color: #666;
+      p {
+        margin: 0 0 6px;
+      }
+      ul {
+        margin-left: 15px;
+        list-style-type: disc;
+        color: #d2322d;
+      }
+    }
+  }
+  .tips {
+    min-height: 180px;
+    border: solid 1px #29a8cd;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom: 0;
+    > .header {
+      background-color: #29a8cd;
+    }
+  }
+  .announcement {
+    border: solid 1px #ed9c28;
+    > .header {
+      background-color: #ed9c28;
+    }
+  }
+
+}
+
 .classemanage {
   .isopen {
     letter-spacing: 2px;
@@ -53,17 +106,14 @@
     height: 262px;
   }
   .form-tip {
-    background-color: #29a8cd;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
     .title {
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       padding: 15px;
-      color: #fff;
+      color: #333;
       font-size: 16px;
     }
     .content {
-      color: #fff;
+      color: #333;
       li {
         margin-top: 6px;
       }
@@ -77,8 +127,12 @@
     .control-label {
       letter-spacing: 1px;
     }
-    .user-add {
+    .user-add,
+    .msg {
       margin-left: 8px;
+    }
+    .msg {
+      color: #d2322d;
     }
   }
   .checkboxs {
@@ -100,6 +154,41 @@
     span {
       color: #ed9c28;
     }
+  }
+}
+
+.myprofile {
+  color: #666;
+  > .row {
+    [class|=col-md] {
+      padding-right: 15px;
+    }
+  }
+  .form-group {
+    label {
+      margin: 0 0 1px 10px;
+      font-size: 12px;
+      font-weight: normal;
+      letter-spacing: 2px;
+    }
+    textarea {
+      font-size: 12px;
+      height: 100px;
+    }
+  }
+  .block-title {
+    margin-top: 20px;
+    font-size: 18px;
+    text-align: right;
+    color: #ed9c28;
+    font-weight: bold;
+  }
+  button {
+    margin-top: 22px !important;
+  }
+  .revoke-edit {
+    margin-top: 29px;
+    font-size: 13px;
   }
 }
 

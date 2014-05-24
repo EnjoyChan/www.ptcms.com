@@ -32,6 +32,8 @@ html(ng-app="ptcms")
                 登&nbsp;出
     div.page-container
       div.page-sidebar(ng-controller="sidebarCtrl")
+        div.header
+          span 菜单栏
         ul.menus
           li(class="a-level active")
             a
@@ -47,7 +49,32 @@ html(ng-app="ptcms")
                 a(ui-sref="{{submenus.uisref}}" ng-bind="submenus.name" open-page)
       div.page-content
         div(ui-view)
-          h2 仪表盘
+          div(class="container-fluid")
+            div.row
+              div.col-md-12
+                ol.breadcrumb
+                  li
+                    i(class="fa fa-home")
+                  li.active 仪表盘
+            div(class="dashboard row")
+              div(class="col-md-8 col-md-offset-2")
+                h2.welcome 欢迎{{user.username}}登录人员与任务周期管理系统
+              div(class="col-md-8 col-md-offset-2")
+                div.tips
+                  div.header
+                    i(class="fa fa-bell-o")
+                    span 小小提示
+                  div.content
+                    ul
+                      li 请保证每日至少登录一次，已查看最新任务和通知
+                      li 各位成员请及时跟进小组长安排下来的任务并及时反馈
+                div.announcement
+                  div.header
+                    i(class="fa fa-flag-o")
+                    span 最新公告
+                  div.content
+                    p 六月初，我们团队将开始本学年的团队招新，请各位成员开始准备招新工作
+                    p 总组长和各位小组长需要准备演讲资料
     div.page-footer
       div.copyright
         span.content 2014 © Designed and built with all the love in the world by xbird.

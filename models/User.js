@@ -24,7 +24,7 @@ var userSchema = mongoose.Schema({
   },
   username: {                     // 姓名
     type: String,
-    default: '未知用户'
+    default: '未填写'
   },
   password: {                     // 密码
     type: String,

@@ -1,8 +1,74 @@
 
-<div class="container-fluid">
+<div ng-class="{normal: normal}" class="container-fluid myprofile">
   <div class="row">
     <div class="col-md-12">
-      <h3>我的信息</h3>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li><a>我的账号</a></li>
+        <li class="active">个人信息</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 block-title"><span>基本信息</span></div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>姓名</label>
+        <input type="text" placeholder="姓名" ng-model="info.username" ng-disabled="normal" class="form-control input-sm"/>
+      </div>
+    </div>
+    <div class="col-md-2 col-md-offset-2">
+      <button ng-show="normal" go-edit="go-edit" class="btn btn-info btn-sm btn-block">编&nbsp;辑</button>
+      <button ng-show="!normal" update-edit="update-edit" class="btn btn-warning btn-sm btn-block">确认更新</button>
+    </div>
+    <div class="revoke-edit col-md-1"><a ng-show="!normal" revoke-edit="revoke-edit" class="link-info">取消编辑</a></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-2">
+      <div class="form-group">
+        <label>年级</label>
+        <select ng-disabled="normal" class="form-control input-sm"></select>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>班级</label>
+        <select ng-disabled="normal" class="form-control input-sm"></select>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>宿舍</label>
+        <select ng-disabled="normal" class="form-control  input-sm"></select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-2">
+      <div class="form-group">
+        <label>电话</label>
+        <input type="text" placeholder="电话" ng-disabled="normal" class="form-control input-sm"/>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>邮箱</label>
+        <input type="text" placeholder="邮箱" ng-disabled="normal" class="form-control input-sm"/>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <label>QQ</label>
+        <input type="text" placeholder="QQ" ng-disabled="normal" class="form-control input-sm"/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2">
+      <div class="form-group">
+        <label>个人介绍</label>
+        <textarea placeholder="个人介绍..." ng-model="info.introduction" ng-disabled="normal" class="form-control"></textarea>
+      </div>
     </div>
   </div>
 </div>

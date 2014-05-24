@@ -72,7 +72,7 @@ var collections = ['autokeys', 'grades', 'groups', 'users'],
 //     key.set('grades', '6', function(doc) {
 //       console.log(doc);
 //     });
-//   });
+//   });c
 // };
 
 
@@ -95,16 +95,16 @@ var collections = ['autokeys', 'grades', 'groups', 'users'],
 
 //
 //== 生成管理员
-// var callback = function() {
-//   mongoose.connection.collections.users.drop(function() {
-//     var admin = new User({ number: 1, account: 'admin', username: '管理员', role: '01000100', introduction: '管理员具有最高权限' });
-//     admin.save();
+var callback = function() {
+  mongoose.connection.collections.users.drop(function() {
+    var admin = new User({ number: 1, account: 'admin', username: '管理员', role: '01000000', introduction: '管理员具有最高权限' });
+    admin.save();
 
-//     key.set('users', '2', function(doc) {
-//       console.log(doc);
-//     });
-//   });
-// };
+    key.set('users', '2', function(doc) {
+      console.log(doc);
+    });
+  });
+};
 
 
 var db = mongoose.connection;

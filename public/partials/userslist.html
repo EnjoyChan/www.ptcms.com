@@ -16,15 +16,14 @@
           <thead>
             <tr>
               <th class="grid-2">序&nbsp;号</th>
-              <th class="grid-">账&nbsp;号</th>
-              <th class="grid-">姓&nbsp;名</th>
-              <th class="grid-">职&nbsp;务</th>
+              <th class="grid-3">账&nbsp;号</th>
+              <th class="grid-2">姓&nbsp;名</th>
+              <th class="grid-4">职&nbsp;务</th>
               <th class="grid-">年&nbsp;级</th>
               <th class="grid-">班&nbsp;级</th>
               <th class="grid-">宿&nbsp;舍</th>
               <th class="grid-">联系方式</th>
               <th class="grid-">Q&nbsp;Q</th>
-              <th class="grid-3">加入时间</th>
               <th class="grid-4">操&nbsp;作</th>
             </tr>
           </thead>
@@ -39,7 +38,6 @@
               <td title="{{user.dormitory}}">{{user.dormitory}}</td>
               <td title="{{user.phone}}">{{user.phone}}</td>
               <td title="{{user.qq}}">{{user.qq}}</td>
-              <td title="{{user.jointime | date: 'yyyy-MM-dd'}}">{{user.jointime | date: "yyyy-MM-dd"}}</td>
               <td><a toggle-detail="toggle-detail" class="link-info">详&nbsp;情</a><span class="separator"></span><a class="link-warning">编&nbsp;辑</a></td>
             </tr>
             <tr class="detail">

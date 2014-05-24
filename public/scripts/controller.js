@@ -153,8 +153,66 @@ angular.module('ptcms.controllers', [])
 
 //
 //== 新增成员
-  .controller('usercreateCtrl', ['$scope', function($scope) {
+  .controller('usercreateCtrl', ['$scope', 'Groups', 'Users', function($scope, Groups, Users) {
+    // 定义scope
+    $scope.roles = ['00000001','00000100','00100000','01000000'];
+    Groups.all().$promise.then(function(data) {
+      if (data.status !== 1) return alert('发生错误!');
+      $scope.groups = data.data.groups;
+    });
 
+    $scope.selectedRoles = ['00000100'];
+    $scope.selectedGroups = [1];
+
+    $scope.addUserMsg = '';
+
+    // 方法
+    $scope.toggleselectedRoles = function(role) {
+      var idx = $scope.selectedRoles.indexOf(role);
+      if (idx > -1) { $scope.selectedRoles.splice(idx, 1); }
+      else { $scope.selectedRoles.push(role) }
+    };
+
+    $scope.toggleselectedGroups = function(role) {
+      var idx = $scope.selectedGroups.indexOf(role);
+      if (idx > -1) { $scope.selectedGroups.splice(idx, 1); }
+      else { $scope.selectedGroups.push(role) }
+    };
+
+    // 添加用户
+    $scope.$on('addUser', function(e) {
+      var user = {};
+      user.account = $scope.useraccount;
+      user.password = $scope.userpassword || '123';
+      user.jointime = $scope.userjointime;
+      user.group = $scope.selectedGroups;
+      user.role = $scope.selectedRoles;
+
+      if (!user.account) {
+        $scope.addUserMsg = '登录账号不能为空';
+        $scope.$saferApply();
+        return;
+      }
+      if ($scope.selectedRoles.length === 0) {
+        $scope.addUserMsg = '请选择成员担任角色';
+        $scope.$saferApply();
+        return;
+      }
+      if ($scope.selectedGroups.length === 0) {
+        $scope.addUserMsg = '请选择成员所在小组';
+        $scope.$saferApply();
+        return;
+      }
+      Users.save(user).$promise.then(function(data) {
+        if (data.status !== 1) $scope.addUserMsg = data.msg;
+        $scope.useraccount = "";
+        $scope.userpassword = "";
+        $scope.userjointime = "";
+        $scope.selectedGroups = [1];
+        $scope.selectedRoles = ['00000100'];
+        $scope.addUserMsg = data.msg;
+      });
+    });
   }])
 
 //
@@ -165,8 +223,34 @@ angular.module('ptcms.controllers', [])
 
 //
 //== 我的信息
-  .controller('myprofileCtrl', ['$scope', function($scope) {
+  .controller('myprofileCtrl', ['$scope', '$cookies', 'Users', function($scope, $cookies, Users) {
+    // 定义scope
+    var number = $cookies['_number'];
 
+    $scope.normal = true;
+
+    Users.one({ users_number: number }).$promise.then(function(data) {
+      console.log(data);
+      $scope.info = data.data.user;
+    });
+
+    // 前往编辑
+    $scope.$on('goInfoEdit', function() {
+      $scope.normal = false;
+      $scope.$saferApply();
+    });
+    // 取消编辑
+    $scope.$on('revokeEdit', function() {
+      $scope.normal = true;
+      Users.one({ users_number: number }).$promise.then(function(data) {
+        $scope.info = data.data.user;
+        $scope.$saferApply();
+      });
+    });
+    // 更新编辑
+    $scope.$on('updateEdit', function() {
+      alert('yes');
+    });
   }])
 
 //

@@ -96,10 +96,7 @@ angular.module('ptcms.directives', [])
         scope.$emit('addClasse');
       });
     };
-    return {
-      restrict: 'AE',
-      link: link
-    };
+    return { restrict: 'AE', link: link };
   }])
   .directive('deleteClasse', [function() {
     'use strict';
@@ -128,7 +125,6 @@ angular.module('ptcms.directives', [])
     };
     return { restrict: 'AE', link: link };
   }])
-  //
   .directive('revokeModifyClasse', [function() {
     'use strict';
     var link = function(scope, element, attrs) {
@@ -137,9 +133,52 @@ angular.module('ptcms.directives', [])
       });
     };
     return { restrict: 'AE', link: link };
-  }]);
+  }])
 
 // 成员列表
+
+// 新增成员
+  .directive('addUser', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        scope.$emit('addUser');
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+
+// 个人信息
+  .directive('goEdit', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        scope.$emit('goInfoEdit');
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('revokeEdit', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        scope.$emit('revokeEdit');
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('updateEdit', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        scope.$emit('updateEdit');
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }]);
+
+
+
 
 
 

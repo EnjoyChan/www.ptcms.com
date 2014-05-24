@@ -12,6 +12,7 @@ a:hover {
 }
 .btn {
   border: none !important;
+  outline: none !important;
 }
 .container-fluid {
   margin-right: auto;
@@ -528,9 +529,16 @@ tfoot {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.page-sidebar .header {
+  margin: 50px 0 0 23px;
+}
+.page-sidebar .header span {
+  font-size: 18px;
+  color: #fff;
+}
 .menus {
   position: relative;
-  padding-top: 80px;
+  padding-top: 20px;
 }
 .menus > li {
   display: block;
@@ -605,6 +613,61 @@ tfoot {
 .container-fluid .breadcrumb i {
   color: #666;
 }
+.dashboard .welcome {
+  margin: 0px 0 20px 0;
+  font-size: 24px;
+}
+.dashboard .announcement,
+.dashboard .tips {
+  min-height: 150px;
+}
+.dashboard .announcement > .header,
+.dashboard .tips > .header {
+  height: 30px;
+  padding: 0 15px;
+  background-color: #29a8cd;
+}
+.dashboard .announcement > .header > span,
+.dashboard .tips > .header > span {
+  color: #fff;
+  line-height: 30px;
+  letter-spacing: 1px;
+}
+.dashboard .announcement > .header i,
+.dashboard .tips > .header i {
+  color: #fff;
+}
+.dashboard .announcement > .content,
+.dashboard .tips > .content {
+  padding: 8px 15px;
+  color: #666;
+}
+.dashboard .announcement > .content p,
+.dashboard .tips > .content p {
+  margin: 0 0 6px;
+}
+.dashboard .announcement > .content ul,
+.dashboard .tips > .content ul {
+  margin-left: 15px;
+  list-style-type: disc;
+  color: #d2322d;
+}
+.dashboard .tips {
+  min-height: 180px;
+  border: solid 1px #29a8cd;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: 0;
+}
+.dashboard .tips > .header {
+  background-color: #29a8cd;
+}
+.dashboard .announcement {
+  border: solid 1px #ed9c28;
+}
+.dashboard .announcement > .header {
+  background-color: #ed9c28;
+}
 .classemanage .isopen {
   letter-spacing: 2px;
 }
@@ -640,19 +703,14 @@ tfoot {
 .usercreate .form-tip {
   height: 262px;
 }
-.usercreate .form-tip {
-  background-color: #29a8cd;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
 .usercreate .form-tip .title {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   padding: 15px;
-  color: #fff;
+  color: #333;
   font-size: 16px;
 }
 .usercreate .form-tip .content {
-  color: #fff;
+  color: #333;
 }
 .usercreate .form-tip .content li {
   margin-top: 6px;
@@ -664,8 +722,12 @@ tfoot {
 .usercreate .form-group .control-label {
   letter-spacing: 1px;
 }
-.usercreate .form-group .user-add {
+.usercreate .form-group .user-add,
+.usercreate .form-group .msg {
   margin-left: 8px;
+}
+.usercreate .form-group .msg {
+  color: #d2322d;
 }
 .usercreate .checkboxs {
   margin-top: 7px;
@@ -686,6 +748,36 @@ tfoot {
 }
 .usercreate .tip span {
   color: #ed9c28;
+}
+.myprofile {
+  color: #666;
+}
+.myprofile > .row [class|=col-md] {
+  padding-right: 15px;
+}
+.myprofile .form-group label {
+  margin: 0 0 1px 10px;
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 2px;
+}
+.myprofile .form-group textarea {
+  font-size: 12px;
+  height: 100px;
+}
+.myprofile .block-title {
+  margin-top: 20px;
+  font-size: 18px;
+  text-align: right;
+  color: #ed9c28;
+  font-weight: bold;
+}
+.myprofile button {
+  margin-top: 22px !important;
+}
+.myprofile .revoke-edit {
+  margin-top: 29px;
+  font-size: 13px;
 }
 .passwordmodify form {
   margin-top: 20px;

@@ -1,4 +1,52 @@
-div.container-fluid
+div(class="container-fluid myprofile" ng-class="{normal: normal}")
   div.row
     div.col-md-12
-      h3 我的信息
+      ol.breadcrumb
+        li
+          i(class="fa fa-home")
+        li
+          a 我的账号
+        li.active 个人信息
+  div.row
+    div(class="col-md-2 block-title")
+      span 基本信息
+    div(class="col-md-2")
+      div.form-group
+        label 姓名
+        input(type="text" class="form-control input-sm" placeholder="姓名" ng-model="info.username" ng-disabled="normal")
+    div(class="col-md-2 col-md-offset-2")
+      button(class="btn btn-info btn-sm btn-block" ng-show="normal" go-edit) 编&nbsp;辑
+      button(class="btn btn-warning btn-sm btn-block" ng-show="!normal" update-edit) 确认更新
+    div(class="revoke-edit col-md-1")
+      a(class="link-info" ng-show="!normal" revoke-edit) 取消编辑
+  div.row
+    div(class="col-md-2 col-md-offset-2")
+      div.form-group
+        label 年级
+        select(class="form-control input-sm" ng-disabled="normal")
+    div(class="col-md-2")
+      div.form-group
+        label 班级
+        select(class="form-control input-sm" ng-disabled="normal")
+    div(class="col-md-2")
+      div.form-group
+        label 宿舍
+        select(class="form-control  input-sm" ng-disabled="normal")
+  div.row
+    div(class="col-md-2 col-md-offset-2")
+      div.form-group
+        label 电话
+        input(type="text" class="form-control input-sm" placeholder="电话" ng-disabled="normal")
+    div(class="col-md-2")
+      div.form-group
+        label 邮箱
+        input(type="text" class="form-control input-sm" placeholder="邮箱" ng-disabled="normal")
+    div(class="col-md-2")
+      div.form-group
+        label QQ
+        input(type="text" class="form-control input-sm" placeholder="QQ" ng-disabled="normal")
+  div.row
+    div(class="col-md-6 col-md-offset-2")
+      div.form-group
+        label 个人介绍
+        textarea(class="form-control" placeholder="个人介绍..." ng-model="info.introduction" ng-disabled="normal")
