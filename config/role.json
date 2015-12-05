@@ -1,176 +1,104 @@
 {
-  "0": {
-    "number":"0",
-    "name": "模版",
-    "menus": []
-  },
-  "1": {
-    "number":"1",
+  "3": {
+    "number":"3",
     "name": "面试人员",
     "menus": [{
       "name": "面试管理",
       "level": "40000",
       "class": "fa-file-text-o",
       "submenus": [
-        { "name": "面试结果", "level": 40004, "uisref": "auditionresult" }
-      ]
-    }, {
-      "name": "团队信息",
-      "level": "50000",
-      "class": "fa-info",
-      "submenus": [
-        { "name": "公告查看", "level": 50003, "uisref": "announcementview" },
-        { "name": "关于团队", "level": 50004, "uisref": "aboutteam" }
-      ]
-    }, {
-      "name": "我的账号",
-      "level": "60000",
-      "class": "fa-user",
-      "submenus": [
-        { "name": "密码修改", "level": 60001, "uisref": "passwordmodify" },
-        { "name": "个人信息", "level": 60002, "uisref": "myprofile" }
+        { "name": "我的简历", "level": 40001, "uisref": "myresume" },
+        { "name": "简历状态", "level": 40002, "uisref": "resumestate" }
       ]
     }]
   },
-  "4": {
-    "number":"4",
-    "name": "开发人员",
+  "2": {
+    "number":"2",
+    "name": "普通员工",
     "menus": [{
-      "name": "人员管理",
+      "name": "任务管理",
+      "level": "10000",
+      "class": "fa-tasks",
+      "submenus": [
+        { "name": "我的任务", "level": 10001, "uisref": "mytasks" }
+      ]
+    }, {
+      "name": "小组管理",
       "level": "20000",
       "class": "fa-users",
       "submenus": [
-        { "name": "成员列表", "level": 20001, "uisref": "userslist" }
-      ]
-    }, {
-      "name": "任务管理",
-      "level": "30000",
-      "class": "fa-tasks",
-      "submenus": [
-        { "name": "我的任务", "level": 30002, "uisref": "mytasks" }
-      ]
-    }, {
-      "name": "面试管理",
-      "level": "40000",
-      "class": "fa-file-text-o",
-      "submenus": [
-        { "name": "面试评定", "level": 40002, "uisref": "auditionassess" },
-        { "name": "面试人员", "level": 40003, "uisref": "auditionstaff" }
-      ]
-    }, {
-      "name": "团队信息",
-      "level": "50000",
-      "class": "fa-info",
-      "submenus": [
-        { "name": "公告查看", "level": 50003, "uisref": "announcementview" },
-        { "name": "关于团队", "level": 50004, "uisref": "aboutteam" }
-      ]
-    }, {
-      "name": "我的账号",
-      "level": "60000",
-      "class": "fa-user",
-      "submenus": [
-        { "name": "密码修改", "level": 60001, "uisref": "passwordmodify" },
-        { "name": "个人信息", "level": 60002, "uisref": "myprofile" }
+        { "name": "我的小组", "level": 20001, "uisref": "mygroups" },
+        { "name": "小组项目", "level": 20002, "uisref": "groupprojects" },
+        { "name": "小组成员", "level": 20003, "uisref": "groupmembers" }
       ]
     }]
   },
-  "36": {
-    "number":"36",
-    "name": "小组长/开发人员",
+  "1": {
+    "number":"1",
+    "name": "组长",
     "menus": [{
-      "name": "人员管理",
+      "name": "任务管理",
+      "level": "10000",
+      "class": "fa-tasks",
+      "submenus": [
+        { "name": "我的任务", "level": 10002, "uisref": "mytasks" },
+        { "name": "任务列表", "level": 10005, "uisref": "tasklist" },
+        { "name": "创建任务", "level": 10005, "uisref": "taskcreate" }
+      ]
+    },{
+      "name": "小组管理",
       "level": "20000",
       "class": "fa-users",
       "submenus": [
-        { "name": "成员列表", "level": 20001, "uisref": "userslist" }
-      ]
-    }, {
-      "name": "任务管理",
-      "level": "30000",
-      "class": "fa-tasks",
-      "submenus": [
-        { "name": "我的任务", "level": 30002, "uisref": "mytasks" },
-        { "name": "任务分配", "level": 30003, "uisref": "taskassign" },
-        { "name": "任务评定", "level": 30004, "uisref": "taskassess" },
-        { "name": "任务列表", "level": 30005, "uisref": "taskslist" }
+        { "name": "我的小组", "level": 20001, "uisref": "mygroups" },
+        { "name": "小组项目", "level": 20002, "uisref": "groupprojects" },
+        { "name": "创建项目", "level": 20003, "uisref": "projectcreate" },
+        { "name": "小组成员", "level": 20004, "uisref": "groupmembers" }
       ]
     }, {
       "name": "面试管理",
-      "level": "40000",
+      "level": "30000",
       "class": "fa-file-text-o",
       "submenus": [
-        { "name": "面试评定", "level": 40002, "uisref": "auditionassess" },
-        { "name": "面试人员", "level": 40003, "uisref": "auditionstaff" }
-      ]
-    }, {
-      "name": "团队信息",
-      "level": "50000",
-      "class": "fa-info",
-      "submenus": [
-        { "name": "公告查看", "level": 50003, "uisref": "announcementview" },
-        { "name": "关于团队", "level": 50004, "uisref": "aboutteam" }
-      ]
-    }, {
-      "name": "我的账号",
-      "level": "60000",
-      "class": "fa-user",
-      "submenus": [
-        { "name": "密码修改", "level": 60001, "uisref": "passwordmodify" },
-        { "name": "个人信息", "level": 60002, "uisref": "myprofile" }
+        { "name": "简历审核", "level": 30001, "uisref": "auditionassess" }
       ]
     }]
   },
-  "64": {
-    "number":"64",
+  "0": {
+    "number":"0",
     "name": "管理员",
     "menus": [{
-      "name": "类别管理",
+      "name": "项目管理",
       "level": "10000",
+      "class": "fa-tasks",
+      "submenus": [
+        { "name": "项目列表", "level": 10001, "uisref": "projectlist" },
+        { "name": "创建项目", "level": 10002, "uisref": "projectcreate" }
+      ]
+    }, {
+      "name": "小组管理",
+      "level": "20000",
       "class": "fa-list",
       "submenus": [
-        { "name": "年级管理", "level": 10001, "uisref": "grademanage" },
-        { "name": "小组管理", "level": 10002, "uisref": "groupmanage" },
-        { "name": "班级管理", "level": 10003, "uisref": "classemanage" }
+        { "name": "小组列表", "level": 20001, "uisref": "grouplist" },
+        { "name": "新增小组", "level": 20002, "uisref": "groupcreate" }
       ]
     }, {
       "name": "人员管理",
-      "level": "20000",
+      "level": "30000",
       "class": "fa-users",
       "submenus": [
-        { "name": "成员列表", "level": 20001, "uisref": "userslist" },
-        { "name": "新增成员", "level": 20002, "uisref": "usercreate" },
-        { "name": "简历审核", "level": 20003, "uisref": "resumecheck" }
+        { "name": "成员列表", "level": 30001, "uisref": "userslist" },
+        { "name": "新增成员", "level": 30002, "uisref": "usercreate" },
+        { "name": "简历审核", "level": 30003, "uisref": "auditionassess" }
       ]
     }, {
-      "name": "任务管理",
-      "level": "30000",
-      "class": "fa-tasks",
-      "submenus": [
-        { "name": "创建项目/模块", "level": 30001, "uisref": "projectcreate" }
-      ]
-    }, {
-      "name": "面试管理",
+      "name": "系统管理",
       "level": "40000",
-      "class": "fa-file-text-o",
+      "class": "fa-power-off",
       "submenus": [
-        { "name": "面试审核", "level": 40001, "uisref": "auditioncheck" }
-      ]
-    }, {
-      "name": "团队信息",
-      "level": "50000",
-      "class": "fa-info",
-      "submenus": [
-        { "name": "公告发布", "level": 50001, "uisref": "announcementpublish" },
-        { "name": "信息维护", "level": 50002, "uisref": "informationmaintain" }
-      ]
-    }, {
-      "name": "我的账号",
-      "level": "60000",
-      "class": "fa-user",
-      "submenus": [
-        { "name": "密码修改", "level": 60001, "uisref": "passwordmodify" },
-        { "name": "个人信息", "level": 60001, "uisref": "myprofile" }
+        { "name": "公告列表", "level": 40001, "uisref": "broadcastlist" },
+        { "name": "创建公告", "level": 40002, "uisref": "broadcastcreate" }
       ]
     }]
   }

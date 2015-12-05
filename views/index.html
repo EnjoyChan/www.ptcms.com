@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html ng-app="ptcms">
+<html ng-app="cms">
   <head>
     <meta charset="utf-8">
-    <title>首页－人员与任务周期管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>首页－企业内部后台管理系统</title>
     <link rel="stylesheet" type="text/css" href="/styles/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/styles/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/styles/css/index.css">
   </head>
   <body ng-controller="appCtrl">
+    <!-- 顶栏 -->
     <div ng-controller="headerCtrl" class="page-header">
-      <div class="brand"><span class="name">人员与任务周期管理系统</span></div>
+      <div class="brand"><span class="name">后台管理系统</span></div>
       <ul class="nav pull-right">
-        <li on-toggle="toggled(open)" class="dropdown user"><a href class="dropdown-toggle"><img src="/imgs/avatar1_small.jpg"><span>&nbsp;&nbsp;{{user.username}}&nbsp;</span><i class="fa fa-angle-down"></i></a>
+        <li on-toggle="toggled(open)" class="dropdown user">
+          <a href class="dropdown-toggle">
+            <img src="/imgs/avatar1_small.jpg">
+            <span ng-bind="user.username"></span>
+            <i class="fa fa-angle-down"></i>
+          </a>
           <ul class="dropdown-menu">
             <li><a href="#" ui-sref="myprofile"><i class="fa fa-user"></i>个人信息</a></li>
             <li><a href="#" ui-sref="mytasks"><i class="fa fa-tasks"></i>我的任务</a></li>
@@ -21,49 +28,81 @@
         </li>
       </ul>
     </div>
+    <!-- 主体 -->
     <div class="page-container">
+      <a id="menu-toggler" target="_blank" class="menu-toggler" ng-click="showMenu()"><span class="menu-text"></span></a>
+      <!-- 菜单栏 -->
       <div ng-controller="sidebarCtrl" class="page-sidebar">
-        <div class="header"><span>菜单栏</span></div>
         <ul class="menus">
-          <li class="a-level active"><a><i class="fa fa-home"></i><span>仪表盘</span></a></li>
-          <li ng-repeat="menu in menus" class="a-level"><a open-submenus><i ng-class="menu.class" class="fa"></i><span ng-bind="menu.name"></span><span class="arrow"></span></a>
+          <li class="a-level active">
+            <a href="index" target="_self">
+              <i class="fa fa-home"></i>
+              <span>首页</span>
+            </a>
+          </li>
+          <li ng-repeat="menu in menus" class="a-level">
+            <a open-submenus>
+              <i ng-class="menu.class" class="fa"></i>
+              <span ng-bind="menu.name"></span>
+              <span class="arrow"></span>
+            </a>
             <ul class="submenus">
               <li ng-repeat="submenus in menu.submenus" class="b-level"><a ui-sref="{{submenus.uisref}}" ng-bind="submenus.name" open-page></a></li>
             </ul>
           </li>
+          <li class="a-level">
+            <a open-submenus>
+              <i class="fa fa-info"></i>
+              <span>关于团队</span>
+              <span class="arrow"></span>
+            </a>
+            <ul class="submenus">
+              <li class="b-level">
+                <a ui-sref="teaminfo" open-page>团队信息</a>
+              </li>
+              <li class="b-level">
+                <a ui-sref="teamfrature" open-page>团队架构</a>
+              </li>
+              <li class="b-level">
+                <a ui-sref="teamcontact" open-page>联系方式</a>
+              </li>
+            </ul>
+          </li>
+          <li class="a-level">
+            <a open-submenus>
+              <i class="fa fa-user"></i>
+              <span>我的帐号</span>
+              <span class="arrow"></span>
+            </a>
+            <ul class="submenus">
+              <li class="b-level">
+                <a ui-sref="passwordmodify" open-page>修改密码</a>
+              </li>
+              <li class="b-level">
+                <a ui-sref="myprofile" open-page>个人信息</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
+      <!-- 页面内容 -->
       <div class="page-content">
         <div ui-view>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-12">
-                <ol class="breadcrumb">
-                  <li><i class="fa fa-home"></i></li>
-                  <li class="active">仪表盘</li>
-                </ol>
-              </div>
-            </div>
-            <div class="dashboard row">
-              <div class="col-md-8 col-md-offset-2">
-                <h2 class="welcome">欢迎{{user.username}}登录人员与任务周期管理系统</h2>
-              </div>
-              <div class="col-md-8 col-md-offset-2">
-                <div class="tips">
-                  <div class="header"><i class="fa fa-bell-o"></i><span>小小提示</span></div>
-                  <div class="content">
-                    <ul>
-                      <li>请保证每日至少登录一次，已查看最新任务和通知</li>
-                      <li>各位成员请及时跟进小组长安排下来的任务并及时反馈</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="announcement">
-                  <div class="header"><i class="fa fa-flag-o"></i><span>最新公告</span></div>
-                  <div class="content">
-                    <p>六月初，我们团队将开始本学年的团队招新，请各位成员开始准备招新工作</p>
-                    <p>总组长和各位小组长需要准备演讲资料</p>
-                  </div>
+          <div class="row">
+            <ul class="breadcrumb">
+              <li><i class="fa fa-home"></i> 首页</li>
+            </ul>
+          </div>
+          <div class="dashboard row main-content">
+            <h2 class="welcome text-center">欢迎<span ng-bind="user.username"></span>登录后台管理系统</h2>
+            <div class="col-md-8 col-xs-12 col-md-offset-2">
+              <div class="announcement">
+                <div class="header"><i class="fa fa-flag-o"></i><span>最新公告</span><a class='pull-right' ui-sref="broadcastlist">更多<<</a></div>
+                <div class="content">
+                  <p ng-repeat="broadcast in broadcasts" class="row">
+                    <span ng-bind="broadcast.description" class="col-xs-8 col-md-10"></span>
+                    <span class="col-xs-4 col-md-2 date" ng-bind="broadcast.createTime | date"></span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -71,13 +110,14 @@
         </div>
       </div>
     </div>
-    <div class="page-footer">
-      <div class="copyright"><span class="content">2014 © Designed and built with all the love in the world by xbird.</span></div>
+    <div class="page-footer text-center">
+      <span class="content">2015 © Designed and built by Wang && Chen.</span>
     </div>
     <div class="page-info">
-      <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+      <alert ng-repeat="alert in alerts" close="closeAlert($index,alert._id)" ng-bind="alert.description"></alert>
     </div>
     <script src="/vendor/jquery/jquery-1.11.0.min.js"></script>
+    <script src="/vendor/lodash.js"></script>
     <script src="/vendor/angular/angular.js"></script>
     <script src="/vendor/angular-cookies/angular-cookies.js"></script>
     <script src="/vendor/angular-resource/angular-resource.js"></script>

@@ -1,0 +1,45 @@
+
+<div class="container-fluid groupmanage">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li><a>类别管理</a></li>
+        <li class="active">小组管理</li>
+      </ol>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="row">
+      <div class="col-xs-4 col-md-2 pull-right list-query">
+        <select ng-model="query" class="form-control" ng-change="changeQuery()">
+          <option value="">全部</option>
+          <option value="true">开启</option>
+          <option value="false">关闭</option>
+        </select>
+      </div>
+    </div>
+    <div class="groups-list">
+      <table class="table table-simple table-hover table-info table-condensed table-flow">
+        <thead>
+          <tr>
+            <th class="grid-1"></th>
+            <th class="grid-4">名&nbsp;称</th>
+            <th class="grid-3">组&nbsp;长</th>
+            <th class="grid-3">状态</th>
+            <th class="grid-2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="group in groups">
+            <td title="{{$index + 1}}">{{$index + 1}}</td>
+              <td title="{{group.name}}"><a ui-sref="groupdetail({id: group._id})">{{group.name}}</</td>
+              <td title="{{group.leaderName}}"><a ui-sref="userdetail({id: group.currentLeader})">{{group.leaderName || '未分配'}}</a></td>
+              <td title="{{group.isOpen}}" class="isopen"><span ng-class="{'label-closed': group.isOpen == 'false', 'label-actived': group.isOpen == 'true'}" class="label">{{group.isOpen | isopen}}</span></td>
+              <td><a change-state class="link-danger" data="{{group._id}}" ng-show="user.role.number | isAdmin">{{group.isOpen == 'false' ? '开启' : '关闭'}}</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

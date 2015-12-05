@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li>面试管理</li>
+        <li class="active">简历状态</li>
+      </ol>
+    </div>
+  </div>
+  <div class="main-content">
+    <form class="form-horizontal">
+      <div class="form-group col-sm-4">
+        <label class="col-xs-3">简历状态</label>
+        <div class="col-xs-7">
+          <p ng-bind="status" class="form-control-static"></p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-xs-3">创建时间</label>
+        <div class="col-xs-7">
+          <p ng-bind="createTime | date" class="form-control-static"></p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4" ng-show="updateTime">
+        <label class="col-xs-3">更新时间</label>
+        <div class="col-xs-7">
+          <p ng-bind="updateTime | date" class="form-control-static"></p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-xs-3">反馈</label>
+        <div class="col-xs-7">
+          <p ng-bind="comment" class="form-control-static"></p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

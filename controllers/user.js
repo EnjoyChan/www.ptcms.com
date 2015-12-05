@@ -5,7 +5,12 @@
 //
 //== 引入
 var User = require('../models/User');
+var Group = require('../models/Group');
+var Project = require('../models/Project');
+var Feedback = require('../models/Feedback');
 var roleMenus = require('../config/role.json');
+var _ = require('lodash');
+var async = require('async');
 
 //
 //== 引入控制器
@@ -43,18 +48,41 @@ var getAllInfo = function(req, res) {
     base.id = user._id;
     base.account = user.account;
     base.username = user.username;
+    base.birthday = user.birthday;
+    base.status = user.status;
+    base.phone = user.phone;
     base.introduction = user.introduction;
+    base.jointime = user.jointime;
+    base.currentGroup = {};
+    base.historyGroup = {};
+    base.resume  = user.resume;
     base.role = {
-      number: roleMenus[roleNumber].number,
+      number: user.role,
       name: roleMenus[roleNumber].name
     }
-    res.json({ status: 1, data: { user: base, menus: menus } });
+    Group.find({_id: {$in: user.currentGroup}}, '_id name',function(err, groups){
+      base.currentGroup = groups;
+
+      Group.find({_id: {$in: user.historyGroup}}, '_id name',function(err, hgroups){
+        base.historyGroup = hgroups;
+
+        Project.find({_id: {$in: user.projects}}, '_id name',function(err, projects){
+          base.projects = projects;
+
+          Feedback.find({_id: {$in: user.feedbacks}}, function(err, feedbacks){
+            base.feedbacks = feedbacks;
+            res.json({ status: 1, data: { user: base, menus: menus } });
+          });
+        });
+      });
+    });
   });
 };
 
 // 所有
 var all = function(req, res) {
-  User.find(function(err, users) {
+  var query = req.query || {};
+  User.find(query, function(err, users) {
     if (err) return console.error(err);
     res.json({ status: 1, data: { users: users } });
   });
@@ -63,18 +91,17 @@ var all = function(req, res) {
 // 添加
 var add = function(req, res) {
   var account = req.body.account,
-      jointime = req.body.jointime || Date.now(),
       password = req.body.password || '123',
-      group = req.body.group || [],
-      role = req.body.role || [],
+      birthday = req.body.birthday || '',
+      phone = req.body.phone || '',
+      currentGroup = req.body.currentGroup || [],
+      role = req.body.role || '11',
+      username = req.body.username || '佚名',
       newUser = {},
       query = { account: account };
 
   var hash = crypto.createHash('md5');
   password = hash.update(password).digest('base64');
-
-  role = unionRole.apply(null, role);
-
 
   var tmp = function(seq) {
     User.findOne(query, function(err, doc) {
@@ -84,15 +111,45 @@ var add = function(req, res) {
         _id: seq,
         account: account,
         password: password,
-        jointime: jointime,
-        currentGroup: group,
-        role: role
+        currentGroup: currentGroup,
+        role: role,
+        username: username,
+        birthday: birthday,
+        phone: phone
       });
 
-      newUser.save(function(err, doc) {
-        if (err) return console.error(err);
-        res.json({ status: 1, msg:'添加成功', data: { user: doc } });
-      });
+      if(role == '10') {
+        async.map(currentGroup, function(group_id, cb){
+          Group.findOne({_id: group_id }, function(err, doc) {
+            var currentStaffs = doc.currentStaffs;
+            currentStaffs.push(seq);
+            Group.update({_id: doc._id},{currentStaffs: currentStaffs},function(err, doc){
+              cb();
+            });
+          })
+        }, function(err, results){
+          newUser.save(function(err, doc) {
+            if (err) return console.error(err);
+            res.json({ status: 1, msg:'添加成功', data: { user: doc } });
+          });
+        });
+        
+      }else if(role == '01') {
+        Group.update({_id: currentGroup[0]},{currentLeader: seq},function(err, doc){
+          if (err) return console.error(err);
+
+          newUser.save(function(err, doc) {
+            if (err) return console.error(err);
+            res.json({ status: 1, msg:'添加成功', data: { user: doc } });
+          });
+        });
+      }else {
+        newUser.save(function(err, doc) {
+          if (err) return console.error(err);
+          res.json({ status: 1, msg:'添加成功', data: { user: doc } });
+        });
+      }
+
     });
   };
 
@@ -106,32 +163,58 @@ var del = function(req, res) {
 
 // 更新
 var update = function(req, res) {
-  res.json({ status: 1, method: 'update' });
+  var _id = req._id,
+      updateUser = req.body;
+  User.findOneAndUpdate({ _id: _id }, updateUser, function(err, user) {
+    if (err) return console.error(err);
+    res.json({ status: 1, msg: '更新成功!' });
+  });
 };
 
-// 联合角色
-var unionRole = function() {
-  var len, i, role = 0, prefix = '';
-  if ((len = arguments.length) === 0) return false;
+// 获得特定角色的人群
+var getRole = function(req, res) {
+  var query = {role: req.role},
+      base = {};
 
-  for (i = 0; i < len; i += 1) {
-    var tmp = arguments[i];
-    role += parseInt(tmp, 2);
-  }
-  role = Number(role).toString(2);
+  User.find(query, '_id username role', function(err,users){
+    if(err) {
+      console.error(err);
+      res.json({ status: 0})
+    }else {
+      res.json({ status: 1, users: users});
+    }
+  });
+};
 
-  for (i = 0; i < 8 - role.length; i += 1) {
-    prefix += '0';
-  }
-
-  return prefix + role;
+var getProject = function(req,res) {
+  var groups = req.query.groups || [];
+  async.map(groups, function(group_id, cb) {
+    Group.findOne({_id: group_id}, 'projects', function(err, group) {
+      if(group) {
+        async.map(group.projects, function(project_id, cb1) {
+          Project.findOne({_id: project_id}, '_id name status', function(err, project) {
+            cb1(err,project);
+          })
+        }, function(err, results) {
+          cb(err, results);
+        });
+      }else {
+        cb([]);
+      }
+    });
+  }, function(err, results) {
+     if(err) return res.json({ status: 0, msg: '访问出错'});
+      res.json({ status: 1, data: results});
+  });
 };
 
 module.exports = {
   isOnline: isOnline,
   getAllInfo: getAllInfo,
+  getRole: getRole,
   all: all,
   add: add,
   del: del,
-  update: update
+  update: update,
+  getProject: getProject
 };

@@ -3,15 +3,22 @@ body {
   height: 100%;
   overflow: hidden;
   background-color: #3d3d3d;
+  background: url('/imgs/tushuguan.jpg') center;
+  background-size: cover;
+}
+.box {
+  margin: 0 auto;
+  margin-top: 117px;
+  padding: 35px 0 30px;
+  width: 280px;
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.7);
 }
 .form-login {
-  max-width: 280px;
-  padding: 15px 15px 40px 15px;
-  margin: 80px auto;
-  background-color: #fff;
-  border-radius: 3px;
+  width: 82%;
+  margin: 0 auto;
 }
-.title,
 .account,
 .password,
 .remember,
@@ -30,16 +37,18 @@ body {
 .forget .fa {
   position: absolute;
   top: 10px;
-  right: 28px;
+  right: 12px;
   color: #3276b1;
 }
 .title {
   color: #3d3d3d;
 }
-.title h2 {
-  margin-bottom: 0;
-  font-size: 24px;
-  font-weight: normal;
+.title h6 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
 .title .smile {
   position: absolute;
@@ -47,8 +56,11 @@ body {
   right: 18px;
   font-size: 18px;
 }
+.remember {
+  color: #4a576a;
+}
 .msg {
-  visibility: hidden;
+  display: none;
 }
 .msg span {
   font-size: 13px;
@@ -61,5 +73,30 @@ body {
   text-align: right;
 }
 .forget a {
+  font-style: italic;
   font-size: 12px;
+  text-decoration: underline;
 }
+input[type="text"],
+input[type="password"]{
+  border-color: #b2bfc7;
+}
+.no-account {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 25px;
+  color: #111;
+}
+.no-account p {
+  display: inline-block;
+}
+.no-account a {
+  margin-left: 7px;
+  border-bottom: 1px solid;
+  color: #111;
+}
+.no-account a:hover {
+  text-decoration: none;
+}
+

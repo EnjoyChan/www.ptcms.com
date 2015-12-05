@@ -1,4 +1,4 @@
-angular.module('ptcms.filters', [])
+angular.module('cms.filters', [])
 
 // 是否开启
   .filter('isopen', [function() {
@@ -11,17 +11,36 @@ angular.module('ptcms.filters', [])
     };
   }])
 
+// 判断在职还是离职
+  .filter('userStatus', [function() {
+    return function(value) {
+      if(value == 'true') {
+        return '在职';
+      }else {
+        return '离职';
+      }
+    }; 
+  }])
+
+// 判断是否管理员
+  .filter('isAdmin', [function() {
+    return function(value) {
+      if(value == '00') {
+        return true;
+      }else {
+        return false;
+      }
+    }; 
+  }])
+
 // 角色
   .filter('role', [function() {
     return function(value) {
       var mapping = {
-        '00000001': '面试人员',             // 1
-        '00000100': '开发人员',             // 4
-        '00100000': '小组长',               // 32
-        '00100100': '小组长/开发人员',       // 36
-        '01000000': '管理员',               // 64
-        '01100000': '管理员/小组长',         // 96
-        '01100100': '管理员/小组长/开发人员'  // 100
+        '11': '面试人员',             // 1
+        '10': '员工',             // 4
+        '01': '组长',               // 32
+        '00': '管理员',               // 64
       };
       return mapping[value];
     };

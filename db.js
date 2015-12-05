@@ -3,8 +3,7 @@
 var mongoose      = require('mongoose');
 
 var Sequence      = require('./models/Sequence');
-var Classe        = require('./models/Classe');
-var Grade         = require('./models/Grade');
+var Project       = require('./models/Project');
 var Group         = require('./models/Group');
 var User          = require('./models/User');
 
@@ -16,7 +15,7 @@ var builder = require('./controllers/builder');
 
 //
 //== 连接mongo数据库
-mongoose.connect('mongodb://localhost/ptcms');
+mongoose.connect('mongodb://localhost/cms');
 
 
 //
@@ -25,29 +24,82 @@ var flag = false, len, tmp, i, db;
 
 db = mongoose.connection;
 
+/*自动增长*/
 var buildSequences = function() {
   new Sequence({ _id: 'users'     }).save();
   new Sequence({ _id: 'tasks'     }).save();
-  new Sequence({ _id: 'grades'    }).save();
   new Sequence({ _id: 'groups'    }).save();
-  new Sequence({ _id: 'modules'   }).save();
-  new Sequence({ _id: 'classes'   }).save();
   new Sequence({ _id: 'projects'  }).save();
+  new Sequence({ _id: 'resumes'  }).save();
+  new Sequence({ _id: 'broadcasts'  }).save();
   new Sequence({ _id: 'feedbacks' }).save();
-  console.log('###### 生成所有新的自动递增序列字段');
+  console.log('###### generate sequence');
 };
 
+/*生成管理员*/
 var buildAdmin = function() {
   builder.getNextSequence('users', function(seq) {
     var admin = new User({
       _id: seq,
-      account: 'admin',
-      username: '管理员',
-      role: '01000000',
-      introduction: '管理员具有最高权限'
+      account: 'admin@wc.com',
+      username: 'administrator',
+      phone: '18825188442',
+      birthday: '1993-01-01',
+      role: '00',
+      introduction: 'administrator has the top privilege'
     });
     admin.save(function() {
-      console.log('###### 生成新的管理员: admin');
+      console.log('###### generate the new administrator: admin');
+    });
+  });
+};
+
+var buildLeader = function() {
+  builder.getNextSequence('users', function(seq) {
+    var admin = new User({
+      _id: seq,
+      account: 'leader@wc.com',
+      username: 'group leader',
+      phone: '18825188442',
+      birthday: '1993-01-01',
+      currentGroup: [1,3],
+      role: '01',
+      introduction: 'group leader is responsible for his group'
+    });
+    admin.save(function() {
+      console.log('###### generate the new leader: group leader');
+    });
+  });
+};
+
+var buildMember = function() {
+  builder.getNextSequence('users', function(seq) {
+    var admin = new User({
+      _id: seq,
+      account: 'member@wc.com',
+      username: 'member',
+      currentGroup: [1,3],
+      projects: [1],
+      role: '10',
+      introduction: 'member is the general member in the team'
+    });
+    admin.save(function() {
+      console.log('###### generate the new member: member');
+    });
+  });
+};
+
+var buildProposor = function() {
+  builder.getNextSequence('users', function(seq) {
+    var admin = new User({
+      _id: seq,
+      account: 'proposor',
+      username: 'proposor',
+      role: '11',
+      introduction: 'the proposor is the man who want to be employed'
+    });
+    admin.save(function() {
+      console.log('###### generate the new proposor: proposor');
     });
   });
 };
@@ -57,7 +109,7 @@ var buildAdmin = function() {
 //   var Sequences = db.collections.sequences;
 //   if (Sequences) {
 //     Sequences.drop(function() {
-//       console.log('###### 删除自动递增序列字段');
+//       console.log('###### drop collection sequences in db');
 //       buildSequences();
 //     });
 //   } else {
@@ -65,50 +117,48 @@ var buildAdmin = function() {
 //   };
 // };
 
-// var callback = function() {
-//   builder.getNextSequence('classes', function(seq) {
-//     console.log(seq);
-//   });
-// };
-
-
-//
-//== 生成年级
-// var callback = function() {
-//   mongoose.connection.collections.grades.drop(function() {
-//     new Grade({ number: 1, name: '2009届', isGraduation: true }).save();
-//     new Grade({ number: 2, name: '2010届', isGraduation: false }).save();
-//     new Grade({ number: 3, name: '2011届', isGraduation: false }).save();
-//     new Grade({ number: 4, name: '2012届', isGraduation: false }).save();
-//     new Grade({ number: 5, name: '2013届', isGraduation: false }).save();
-//   });
-// };
-
 //
 //== 生成小组
-// var callback = function() {
-//   mongoose.connection.collections.groups.drop(function() {
-//     new Group({ number: 1, name: '前端组',   isOpen: true,   leader: '' }).save();
-//     new Group({ number: 2, name: '安卓组',   isOpen: false,  leader: '' }).save();
-//     new Group({ number: 3, name: '后台组',   isOpen: true,   leader: '' }).save();
-//     new Group({ number: 4, name: '动画组',   isOpen: false,  leader: '' }).save();
-//     new Group({ number: 5, name: '编译器组', isOpen: true,   leader: '' }).save();
+var buildGroup = function() {
+  new Group({_id: 1, name: 'IOS组', currentLeader: '2', currentStaffs: [3,2], projects: [1], description: 'this is the group responsible for IOS'}).save();
+  new Group({_id: 2, name: '安卓组', currentLeader: '3', currentStaffs: [3,2]}).save();
+  new Group({_id: 3, name: '游戏组', currentLeader: '3', currentStaffs: [3,2]}).save();
+  new Group({_id: 4, name: '动画组', currentLeader: '3', currentStaffs: [3,2]}).save();
+  builder.setCurrentSequence('groups', 4, function(err){
+    if(err) {
+      console.error('build error whild build group');
+    } else {
+      console.log('###### generate four groups');
+    }
+  });
+};
 
-//     key.set('groups', '6', function(doc) {
-//       console.log(doc);
-//     });
-//   });
-// };
+// 
+// == 生成项目
+var buildProject = function() {
+  builder.getNextSequence('projects', function(seq) {
+    var admin = new Project({
+      _id: seq,
+      name: '移动构建项目',
+      description: '移动端需要重构',
+      group: 1,
+      status: '启动'
+    });
+    admin.save(function() {
+      console.log('###### generate the new Project');
+    });
+  });
+};
 
 
 //
-//== 生成管理员
+// == 生成管理员
 // var callback = function() {
 //   var conditions = { role: '01000000' };
 //   User.find(conditions, function(err, users) {
 //     if (users.length !== 0) {
 //       User.remove(conditions, function() {
-//         console.log('###### 删除所有管理员');
+//         console.log('###### delete admin already exist in db');
 //         buildAdmin();
 //       });
 //       return;
@@ -117,7 +167,26 @@ var buildAdmin = function() {
 //   });
 // };
 
+// == 初始化填充数据
+var init = function() {
+  db.collections.sequences.drop(),
+  db.collections.users.drop(),
+  db.collections.groups.drop();
+  db.collections.projects.drop();
+  // 生成递增序列
+  buildSequences();
+  // 生成成员
+  buildAdmin();
+  buildLeader();
+  buildMember();
+  buildProposor();
+  // 生成组
+  buildGroup();
+  // 生成项目
+  buildProject();
+};
+
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', callback);
+db.once('open', init);

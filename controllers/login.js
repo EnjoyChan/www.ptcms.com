@@ -34,6 +34,28 @@ var login = function(req, res) {
   });
 };
 
+var modify = function(req, res) {
+  var _id = req._id,
+      updatePwd = req.body.newPassword,
+      oldPassword = req.body.oldPassword,
+      hash = crypto.createHash('md5');
+  User.findOne({ _id: _id}, function(err, user) {
+    if (err) return console.error(err);
+
+    dbPassword = user.password;
+    ftPassword = hash.update(oldPassword).digest('base64'); 
+    if (dbPassword !== ftPassword) return res.json({ status: 0, msg: '密码不正确!' });
+
+    User.findOneAndUpdate({ _id: _id }, {password: ftPassword}, function(err, user) {
+      if (err) return console.error(err);
+      res.json({ status: 1, msg: '修改成功!' });
+    });
+  });
+};
+
 //
 //== 暴露
-module.exports = login;
+module.exports = {
+  login: login,
+  modify: modify
+}

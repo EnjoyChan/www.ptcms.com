@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li>团队信息</li>
+        <li class="active" ng-bind="info.name">关于小组</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row main-content">
+    <form class="form-horizontal">
+      <div class="alert alert-danger text-center" role="alert"ng-show="errorMsg">
+        <span class="msg" ng-bind="errorMsg"></span>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">组名</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-bind="info.name" class="form-control-static" ng-show="!isEdit"></p>
+          <input type="text" placeholder="组名" ng-model="info.name" ng-disabled="normal" ng-show="isEdit" class="form-control input-sm"/>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">状态</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-bind="info.isOpen | isopen" class="form-control-static" ng-show="!isEdit"></p>
+          <select class="form-control" ng-model="info.isOpen" ng-show="isEdit">
+            <option value="true">开启</option>
+            <option value="false">关闭</option>
+          </select>         
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">组长</label>
+        <div class="col-sm-8 col-xs-8">
+          <p class="form-control-static" ng-show="!isEdit">
+            <a ng-bind="info.currentLeader.username" ui-sref="userdetail({id: info.currentLeader._id})"></a>
+          </p>
+          <select class="form-control" ng-model="info.currentLeader._id" ng-show="isEdit">
+            <option ng-repeat="leader in allLeaders" ng-bind="leader.username" value="{{leader._id}}"></option>
+          </select>  
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">项目</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-repeat="project in info.projects" class="form-control-static">
+            <a ng-bind="project.name" ui-sref="projectdetail({id: project._id})"></a>
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">创建时间</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-bind="info.createTime | date" class="form-control-static"></p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">小组成员</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-repeat="staff in info.currentStaffs" class="form-control-static" ng-show="!isEdit">
+            <a ng-bind="staff.username" ui-sref="userdetail({id: staff._id})"></a>
+          </p>
+          <div class="form-control-static tag" ng-show="isEdit">
+            <div ng-repeat="staff in info.currentStaffs" class="label label-info">
+              <span ng-bind="staff.username"></span>
+              <span class="close" data="{{staff._id}}" delete-tag>x</span>
+            </div>
+            <button class="btn btn-xs btn-warning" show-modal>添加成员</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">小组描述</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-bind="info.description" class="form-control-static" ng-show="!isEdit"></p>
+          <textarea class="form-control" ng-model="info.description" rows="3" ng-show="isEdit"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <button type="button" id="operationBtn" class="btn btn-primary col-xs-4 col-xs-offset-4" ng-show="user.role.number | isAdmin" admin-edit="admin-edit" ng-bind="oper"></button>
+        <a ng-show="isEdit" class="link-info" admin-revok>取消编辑</a>
+      </div>
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" close-modal>&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                  添加成员
+                </h4>
+              </div>
+              <div class="modal-body">
+                <select class="form-control" ng-model="selectedStaff" ng-show="isEdit">
+                  <option ng-repeat="staff in allStaffs" ng-bind="staff.username" value="{{staff._id}}/{{staff.username}}"></option>
+                </select>  
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" add-tag>确定</button>
+              </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal -->
+    </form>
+  </div>
+</div>

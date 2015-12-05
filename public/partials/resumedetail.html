@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li class="active">简历详情</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row main-content">
+    <form class="form-horizontal">
+      <div class="alert alert-danger text-center" role="alert" ng-show="errorMsg">
+        <span class="msg" ng-bind="errorMsg"></span>
+      </div>
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3"><span class="text-danger">*</span>姓名</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" ng-model="info.name" disabled class="form-control input-sm"/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3"><span class="text-danger">*</span>申请职位</label>
+          <div class="col-sm-8 col-xs-8">
+            <select ng-model="info.role" class="form-control" disabled>
+              <option value="组长">组长</option>
+              <option value="组员">组员</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">出生年月</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" ng-model="info.birthday" disabled class="form-control input-sm"/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">学校</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" class="form-control" ng-model="info.school" disabled/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">联系电话</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" ng-model="info.phone" disabled class="form-control input-sm"/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">邮箱</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" ng-model="info.email" disabled class="form-control input-sm"/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">职业证书</label>
+          <div class="col-sm-8 col-xs-8">
+            <textarea class="form-control" ng-model="info.honor" rows="3" disabled></textarea>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">工作经历</label>
+          <div class="col-sm-8 col-xs-8">
+            <textarea class="form-control" ng-model="info.experience" rows="3" disabled></textarea>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">个人简介</label>
+          <div class="col-sm-8 col-xs-8">
+            <textarea class="form-control" ng-model="info.introduction" rows="3" disabled></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <button type="button" id="operationBtn" class="btn btn-primary col-xs-3 col-xs-offset-2" admin-Edit>通过</button>
+          <button type="button" id="operationBtn" class="btn btn-danger col-xs-3 col-xs-offset-2" admin-Edit>不通过</button>
+        </div>
+        <div class="row" ng-show="isComment">
+          <textarea rows="3" class="col-xs-12" ng-bind="update.comment"></textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

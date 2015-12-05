@@ -10,13 +10,13 @@ var groupSchema = new Schema({
   endTime         : String,
   description     : String,
   name            : { type: String,  required: true },
-  beginTime       : { type: String,  default: Date.now() },
   createTime      : { type: String,  default: Date.now() },
-  isOpen          : { type: Boolean, default: false },
+  isOpen          : { type: String, default: 'true' },//废弃或存在
   currentLeader   : { type: Number,  ref: 'User' },
   historyLeaders  : [{ type: Number, ref: 'User' }],
   currentStaffs   : [{ type: Number, ref: 'User' }],
-  hostoryStaffs   : [{ type: Number, ref: 'User' }]
+  hostoryStaffs   : [{ type: Number, ref: 'User' }],
+  projects        : [{ type: Number, ref: 'Project' }]
 });
 
 

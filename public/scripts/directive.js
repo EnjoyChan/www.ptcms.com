@@ -1,4 +1,4 @@
-angular.module('ptcms.directives', [])
+angular.module('cms.directives', [])
 
 //
 //== 通用
@@ -47,7 +47,7 @@ angular.module('ptcms.directives', [])
 //
 //== 侧边栏
 
-// 展开菜单栏
+// 展开菜单栏子项
   .directive('openSubmenus', [function() {
     'use strict';
 
@@ -76,6 +76,7 @@ angular.module('ptcms.directives', [])
     var link = function(scope, element, attrs) {
       element.on('click', function(e) {
         e.preventDefault();
+        $('.page-sidebar').removeClass('open');
         $('html,body').animate({ scrollTop: 0 }, 'slow');
 
         $('.a-level').removeClass('active');
@@ -89,6 +90,18 @@ angular.module('ptcms.directives', [])
   }])
 
 // 小组管理
+  .directive('changeState', [function() {
+    'use strict';
+    var link = function(scope, element) {
+      element.on('click', function(e) {
+        var data = {};
+        data.state = $(this).text();
+        data.id = $(this).attr('data')
+        scope.$emit('changeState', data);
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
   .directive('addGroup', [function() {
     'use strict';
     var link = function(scope, element) {
@@ -126,49 +139,27 @@ angular.module('ptcms.directives', [])
     return { restrict: 'AE', link: link };
   }])
 
+  .directive('getFile', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('change', function(e) {
+        var data = $(this).val()
+        scope.$emit('getFile', data);
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
 
-// 班级管理
-  .directive('addClasse', [function() {
+
+// 任务管理
+  .directive('changeStatus', [function() {
     'use strict';
     var link = function(scope, element, attrs) {
       element.on('click', function(e) {
-        scope.$emit('addClasse');
-      });
-    };
-    return { restrict: 'AE', link: link };
-  }])
-  .directive('deleteClasse', [function() {
-    'use strict';
-    var link = function(scope, element, attrs) {
-      element.on('click', function(e) {
-        scope.$emit('deleteClasse', element.data('id'));
-      });
-    };
-    return { restrict: 'AE', link: link };
-  }])
-  .directive('goModifyClasse', [function() {
-    'use strict';
-    var link = function(scope, element, attrs) {
-      element.on('click', function(e) {
-        scope.$emit('goModifyClasse', scope.classe);
-      });
-    };
-    return { restrict: 'AE', link: link };
-  }])
-  .directive('modifyClasse', [function() {
-    'use strict';
-    var link = function(scope, element, attrs) {
-      element.on('click', function(e) {
-        scope.$emit('modifyClasse');
-      });
-    };
-    return { restrict: 'AE', link: link };
-  }])
-  .directive('revokeModifyClasse', [function() {
-    'use strict';
-    var link = function(scope, element, attrs) {
-      element.on('click', function(e) {
-        scope.$emit('revokeModifyClasse');
+        var data = {};
+        data.status = $(this).text();
+        data.id = $(this).parent().attr('data');
+        scope.$emit('changeStatus', data);
       });
     };
     return { restrict: 'AE', link: link };
@@ -177,11 +168,11 @@ angular.module('ptcms.directives', [])
 // 成员列表
 
 // 新增成员
-  .directive('addUser', [function() {
+  .directive('addDoc', [function() {
     'use strict';
     var link = function(scope, element, attrs) {
       element.on('click', function(e) {
-        scope.$emit('addUser');
+        scope.$emit('addDoc');
       });
     };
     return { restrict: 'AE', link: link };
@@ -214,8 +205,98 @@ angular.module('ptcms.directives', [])
       });
     };
     return { restrict: 'AE', link: link };
-  }]);
+  }])
 
+// 管理员编辑
+  .directive('deleteDoc', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        if(confirm('确定删除？')) {
+          var data = $(this).attr('data');
+          scope.$emit('deleteDoc', data);
+        }
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('submitBroadcast', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        if(confirm('确定发布？')){
+          scope.$emit('submitBroadcast');         
+        }
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('closeModal', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        $('#myModal').hide();
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('showModal', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        $('#myModal').show();
+        scope.$emit('showModal');
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('addTag', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        scope.$emit('addTag');
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('deleteTag', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        var data = $(this).attr('data');
+        scope.$emit('deleteTag', data);
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('adminRevok', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        $('#operationBtn').removeClass('btn-warning').addClass('btn-primary');
+        scope.$emit('revokeEdit');
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }])
+  .directive('adminEdit', [function() {
+    'use strict';
+    var link = function(scope, element, attrs) {
+      element.on('click', function(e) {
+        var oper = scope.oper;
+        if(oper == '编辑') {
+          $(this).removeClass('btn-primary').addClass('btn-warning');
+          scope.$emit('goInfoEdit');
+        }else if(oper == '保存'){
+          scope.$emit('save');
+        }else{
+          scope.$emit('goUpdate');
+        }
+
+      });
+    };
+    return { restrict: 'AE', link: link };
+  }]);
 
 
 

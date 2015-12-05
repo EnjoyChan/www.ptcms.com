@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li>面试管理</li>
+        <li class="active" ng-bind="info.name">我的简历</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row main-content">
+    <form class="form-horizontal">
+      <div class="alert alert-danger text-center" role="alert" ng-show="errorMsg">
+        <span class="msg" ng-bind="errorMsg"></span>
+      </div>
+      <div ng-show="!isExit">
+        <span>你还没有创建简历</span>
+        <button type="button" class="btn btn-primary" ng-click="showForm()">创建简历</button>
+      </div>
+      <div class="text-center" ng-show="info.status=='未投递'">
+        <button type="button" class="btn btn-info" ng-click="upload()">投递</button>
+      </div>
+      <div class="row" ng-show="isForm">
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3"><span class="text-danger">*</span>姓名</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" ng-model="info.name" ng-disabled="normal" class="form-control input-sm"/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3"><span class="text-danger">*</span>申请职位</label>
+          <div class="col-sm-8 col-xs-8">
+            <select ng-model="info.role" class="form-control" ng-disabled="normal">
+              <option value="组长">组长</option>
+              <option value="组员">组员</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">出生年月</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" ng-model="info.birthday" ng-disabled="normal" class="form-control input-sm"/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">学校</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" class="form-control" ng-model="info.school" ng-disabled="normal"/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">联系电话</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" ng-model="info.phone" ng-disabled="normal" class="form-control input-sm"/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">邮箱</label>
+          <div class="col-sm-8 col-xs-8">
+            <input type="text" ng-model="info.email" ng-disabled="normal" class="form-control input-sm"/>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">职业证书</label>
+          <div class="col-sm-8 col-xs-8">
+            <textarea class="form-control" ng-model="info.honor" rows="3" ng-disabled="normal"></textarea>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">工作经历</label>
+          <div class="col-sm-8 col-xs-8">
+            <textarea class="form-control" ng-model="info.experience" rows="3" ng-disabled="normal"></textarea>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label class="col-sm-2 col-xs-3">个人简介</label>
+          <div class="col-sm-8 col-xs-8">
+            <textarea class="form-control" ng-model="info.introduction" rows="3" ng-disabled="normal"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <button type="button" id="operationBtn" class="btn btn-primary col-xs-4 col-xs-offset-4" ng-bind="oper" admin-Edit></button>
+          <a ng-show="isEdit" class="link-info" admin-revok>取消编辑</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

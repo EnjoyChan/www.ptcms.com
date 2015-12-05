@@ -2,7 +2,37 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <h3>我的任务</h3>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li>任务管理</li>
+        <li class="active">我的任务</li>
+      </ol>
     </div>
+  </div>
+  <div class="main-content">
+  	<div class="text-center">
+      <span class="msg">{{errorMsg}}</span>
+    </div>
+  	<div class="row">
+      <div class="col-xs-4 col-md-2 pull-right list-query">
+        <select ng-model="query" class="form-control" ng-change="changeQuery()">
+          <option value="">全部</option>
+          <option value="待定">待定</option>
+          <option value="开启">开启</option>
+          <option value="完成">完成</option>
+          <option value="暂停">暂停</option>
+        </select>
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="task in tasks" data="{{task._id}}">
+        <button class="btn btn-xs btn-info" ng-show="task.status == '待定'" change-status>开启</button>
+        <button class="btn btn-xs btn-info" ng-show="task.status == '开启'" change-status>暂停</button>
+        <button class="btn btn-xs btn-info" ng-show="task.status == '开启'" change-status>完成</button>
+        <p ng-bind="task.schedule"></p>
+        <a ng-bind="task.creatorName" ui-sref="userdetail({id: task.creator})"></a>
+        <span ng-bind="task.createTime | date"></span>    
+      </li>
+    </ul>
   </div>
 </div>

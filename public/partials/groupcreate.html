@@ -1,0 +1,75 @@
+
+<div class="container-fluid usercreate">
+  <div class="row">
+    <div class="col-xs-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li><a>小组管理</a></li>
+        <li class="active">新增小组</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row main-content">
+    <form class="form-horizontal">
+      <div class="form-group text-center">
+        <span class="msg">{{errorMsg}}</span>
+      </div>
+      <div class="form-group">
+        <label for="account" class="col-xs-4 control-label"><span class="text-danger">*</span>名称：</label>
+        <div class="col-xs-7">
+          <input type="text" id="account" ng-model="info.name" class="account form-control"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4 control-label">组长：</label>
+        <div class="col-xs-7">
+          <select class="form-control" ng-model="info.currentLeader">
+            <option ng-repeat="leader in allLeaders" ng-bind="leader.username" value="{{leader._id}}"></option>
+          </select> 
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-xs-4 control-label">组员：</label>
+        <div class="col-xs-7">
+          <div class="form-control-static tag">
+            <div ng-repeat="staff in chooseStaffs" class="label label-info">
+              <span ng-bind="staff.username"></span>
+              <span class="close" data="{{staff._id}}" delete-tag>x</span>
+            </div>
+            <button class="btn btn-xs btn-warning" show-modal>添加成员</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="birthday" class="col-xs-4 control-label">描述：</label>
+        <div class="col-xs-7">
+          <textarea type="text" ng-model="info.description" class="form-control" rows="5"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-offset-4 col-xs-8">
+          <buttom add-doc="add-doc" class="user-add btn btn-sm btn-warning">确认添加<i class="fa fa-plus"></i></buttom>
+        </div>
+      </div>
+    </form>
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" close-modal>&times;</button>
+              <h4 class="modal-title" id="myModalLabel">
+                添加成员
+              </h4>
+            </div>
+            <div class="modal-body">
+              <select class="form-control" ng-model="selectedStaff">
+                <option ng-repeat="staff in allStaffs" ng-bind="staff.username" value="{{staff._id}}/{{staff.username}}"></option>
+              </select>  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" add-tag>确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+  </div>
+</div>

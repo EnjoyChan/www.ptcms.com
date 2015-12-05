@@ -2,32 +2,39 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>登录－人员与任务周期管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>登录－企业内部后台管理系统</title>
     <link rel="stylesheet" type="text/css" href="/styles/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/styles/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/styles/css/login.css">
   </head>
   <body>
     <div class="container">
-      <form class="form-login row">
-        <div class="title col-md-12">
-          <h2>请登录</h2><i class="smile fa fa-smile-o"></i>
-        </div>
-        <div class="account col-md-12">
-          <input name="account" type="text" placeholder="账号" class="form-control"><i style="margin-right: 3px;" class="fa fa-user"></i>
-        </div>
-        <div class="password col-md-12">
-          <input name="password" type="password" placeholder="密码" class="form-control"><i class="fa fa-key"></i>
-        </div>
-        <div class="remember col-md-12">
-          <input type="checkbox"><span>&nbsp;&nbsp;记住我</span>
-        </div>
-        <div class="msg col-md-12"><span>账号和密码不能为空</span></div>
-        <div class="submit col-md-12">
-          <button type="button" class="signup btn btn-primary btn-block">登&nbsp;录</button>
-        </div>
-        <div class="forget col-md-12"><a href="#">难道我忘记密码了...</a></div>
-      </form>
+      <div class="box">
+        <form class="form-login">
+          <div class="title">
+            <h6>LOG IN</h6>
+          </div>
+          <div class="account">
+            <input name="account" type="text" placeholder="Your account" class="form-control"><i style="margin-right: 3px;" class="fa fa-user"></i>
+          </div>
+          <div class="password">
+            <input name="password" type="password" placeholder="Your password" class="form-control"><i class="fa fa-key"></i>
+          </div>
+          <div class="forget"><a href="#">Fogort password?</a></div>
+          <div class="remember">
+            <input type="checkbox"><span>&nbsp;&nbsp;Remember me</span>
+          </div>
+          <div class="msg"><span>账号和密码不能为空</span></div>
+          <div class="submit">
+            <button type="button" class="logIn btn btn-primary btn-block">LOG IN</button>
+          </div>
+        </form>        
+      </div>
+      <div class="no-account">
+        <P>Don't have an account?</P>
+        <a href="signup">Sign up</a>
+      </div>
     </div>
     <script src="/vendor/jquery/jquery-1.11.0.min.js"></script>
     <script src="/vendor/jquery/jquery.cookie.js"></script>

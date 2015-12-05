@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li>项目信息</li>
+        <li class="active" ng-bind="info.name"></li>
+      </ol>
+    </div>
+  </div>
+  <div class="row main-content">
+    <form class="form-horizontal">
+      <div class="alert alert-danger text-center" role="alert"ng-show="errorMsg">
+        <span class="msg" ng-bind="errorMsg"></span>
+      </div>
+      <div class="text-center"><a class="btn btn-info btn-xs" ui-sref="feedback({name: 'project', id: id})">查看项目反馈</a></div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">名称</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-bind="info.name" class="form-control-static" ng-show="!isEdit"></p>
+          <input type="text" ng-model="info.name" ng-disabled="normal" ng-show="isEdit" class="form-control input-sm"/>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">创建者</label>
+        <div class="col-sm-8 col-xs-8">
+          <p class="form-control-static">
+            <a ng-bind="info.creator.username" ui-sref="userdetail({id: info.creator._id})"></a>
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">状态</label>
+        <div class="col-sm-8 col-xs-3">
+          <p ng-bind="info.status" class="form-control-static"></p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">归属小组</label>
+        <div class="col-sm-8 col-xs-8">
+          <p class="form-control-static" ng-show="!isEdit">
+            <a ui-sref="groupdetail({id: info.group._id})" ng-bind="info.group.name"></a> 
+          </p>
+          <select class="form-control" ng-model="info.group._id" ng-show="isEdit">
+            <option ng-repeat="group in allGroups" ng-bind="group.name" value="{{group._id}}"></option>
+          </select> 
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">创建日期</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-bind="info.createTime | date" class="form-control-static"></p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4" ng-show="info.beginTime">
+        <label class="col-sm-2 col-xs-3">开启时间</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-bind="info.beginTime | date" class="form-control-static"></p>       
+        </div>
+      </div>
+      <div class="form-group col-sm-4" ng-show="info.endtime">
+        <label class="col-sm-2 col-xs-3">结束时间</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-bind="info.endtime | date" class="form-control-static"></p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label class="col-sm-2 col-xs-3">项目描述</label>
+        <div class="col-sm-8 col-xs-8">
+          <p ng-bind="info.description" class="form-control-static" ng-show="!isEdit"></p>
+          <textarea class="form-control" ng-model="info.description" rows="3" ng-show="isEdit"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <button type="button" id="operationBtn" class="btn btn-primary col-xs-offset-4 col-xs-4" ng-show="user.role.number | isAdmin" admin-edit="admin-edit" ng-bind="oper"></button>
+        <a ng-show="isEdit" class="link-info" admin-revok>取消编辑</a>
+      </div>
+    </form>
+  </div>
+</div>

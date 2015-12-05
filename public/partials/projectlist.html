@@ -1,0 +1,46 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li><a>项目管理</a></li>
+        <li class="active">项目列表</li>
+      </ol>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="row">
+      <div class="col-xs-4 col-md-2 pull-right list-query">
+        <select ng-model="query" class="form-control" ng-change="changeQuery()">
+          <option value="">全部</option>
+          <option value="待分配">待分配</option>
+          <option value="已分配">已分配</option>
+          <option value="启动">启动</option>
+          <option value="完成">完成</option>
+          <option value="暂停">暂停</option>
+        </select>
+      </div>
+    </div>
+    <div class="groups-list">
+      <table class="table table-simple table-hover table-info table-condensed table-flow">
+        <thead>
+          <tr>
+            <th class="grid-1"></th>
+            <th class="grid-4">名&nbsp;称</th>
+            <th class="grid-3">负责小组</th>
+            <th class="grid-2">状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="project in info">
+            <td title="{{$index + 1}}">{{$index + 1}}</td>
+            <td title="{{project.name}}"><a ui-sref="projectdetail({id: project._id})">{{project.name}}</</td>
+            <td title="{{project.group}}"><a ui-sref="groupdetail({id: project.group})">{{project.groupName}}</a></td>
+            <td title="{{project.status}}" ng-bind="project.status"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

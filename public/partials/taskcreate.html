@@ -1,0 +1,59 @@
+
+<div class="container-fluid usercreate">
+  <div class="row">
+    <div class="col-xs-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li><a>任务管理</a></li>
+        <li class="active">新增任务</li>
+      </ol>
+    </div>
+  </div>
+  <div class="row main-content">
+    <form class="form-horizontal">
+      <div class="form-group text-center">
+        <span class="msg">{{errorMsg}}</span>
+      </div>
+      <div class="form-group" ng-show="!groupSelected">
+        <label for="account" class="col-xs-4 control-label">选择小组：</label>
+        <div class="col-xs-7">
+          <select class="form-control" ng-model="selectedGroup">
+            <option ng-repeat="group in allgroups" ng-bind="group.name" value="{{group._id}}"></option>
+          </select> 
+        </div>
+      </div>
+      <div class="form-group" ng-show="groupSelected">
+        <label for="account" class="col-xs-4 control-label">选择项目：</label>
+        <div class="col-xs-7">
+          <select class="form-control" ng-model="info.project">
+            <option ng-repeat="project in allprojects" ng-bind="project.name" value="{{project._id}}"></option>
+          </select> 
+        </div>
+      </div>
+      <div class="form-group" ng-show="groupSelected">
+        <label for="account" class="col-xs-4 control-label"><span class="text-danger">*</span>任务：</label>
+        <div class="col-xs-7">
+          <textarea type="text" ng-model="info.schedule" class="account form-control"></textarea>
+        </div>
+      </div>
+      <div class="form-group" ng-show="groupSelected">
+        <label class="col-xs-4 control-label"><span class="text-danger">*</span>执行者：</label>
+        <div class="col-xs-7">
+          <select class="form-control" ng-model="info.action">
+            <option ng-repeat="staff in allstaffs" ng-bind="staff.username" value="{{staff._id}}"></option>
+          </select> 
+        </div>
+      </div>
+      <div class="form-group" ng-show="!groupSelected">
+        <div class="col-xs-offset-4 col-xs-8">
+          <buttom ng-click="nextOper()" class="user-add btn btn-sm btn-primary">Next</buttom>
+        </div>
+      </div>
+      <div class="form-group" ng-show="groupSelected">
+        <div class="col-xs-offset-4 col-xs-8">
+          <buttom add-doc="add-doc" class="user-add btn btn-sm btn-warning">确认添加<i class="fa fa-plus"></i></buttom>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

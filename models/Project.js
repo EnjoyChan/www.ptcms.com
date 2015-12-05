@@ -11,14 +11,12 @@ var projectSchema = new Schema({
   description     : String,
   endTime         : String,
   name            : { type: String,  required: true },
-  beginTime       : { type: String,  default: Date.now() },
+  beginTime       : String,
   createTime      : { type: String,  default: Date.now() },
-  isFinish        : { type: Boolean, default: false },
+  status          : { type: String,  default: '待分配' },//待分配、已分配、启动、暂停、完成
   creator         : { type: Number,  ref: 'User' },
-  currentModules  : [{ type: Number, ref: 'Module' }],
-  historyModules  : [{ type: Number, ref: 'Module' }],
-  currentLeaders  : [{ type: Number, ref: 'User' }],
-  historyLeaders  : [{ type: Number, ref: 'User' }]
+  group           : { type: Number,  ref: 'Group'},
+  feedbacks       : [{ type: Number,  ref: 'Feedback'}]
 });
 
 

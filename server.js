@@ -10,20 +10,18 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan')
 
 
-//
 //== 连接mongo数据库
-mongoose.connect('mongodb://localhost/ptcms');
+mongoose.connect('mongodb://localhost/cms');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-  console.log('connect to mongodb');
+  console.log('connect to mongodb cms');
 });
 
 
 //
 //== 创建app实例
-
 var app = new express();
 
 
@@ -38,6 +36,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // View engine
 app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'jade');
 
 
 //

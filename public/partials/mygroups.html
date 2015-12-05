@@ -1,0 +1,19 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li>小组管理</li>
+        <li class="active">我的小组</li>
+      </ol>
+    </div>
+  </div>
+  <div class="main-content">
+    <ul class="list-group">
+      <li class="list-group-item text-center" ng-repeat="group in user.currentGroup">
+        <a ng-bind="group.name" ui-sref="groupdetail({id: group._id})"></a>
+      </li>
+    </ul>
+  </div>
+</div>

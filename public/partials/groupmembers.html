@@ -1,0 +1,31 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i></li>
+        <li>小组管理</li>
+        <li class="active">小组成员</li>
+      </ol>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="text-center">
+      <span class="msg">{{errorMsg}}</span>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 col-md-2 pull-right list-query">
+        <select ng-model="query" class="form-control" ng-change="changeQuery()">
+          <option value=""></option>
+          <option ng-repeat="group in user.currentGroup" ng-bind="group.name" value="{{group._id}}"></option>
+        </select>
+      </div>
+    </div>
+    <p>组长: <span ng-bind="info.currentLeader.username"></span></p>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="member in info.currentStaffs">
+        <a ng-bind="member.username" ui-sref="userdetail({id: member._id})"></a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,11 +1,15 @@
 //
 //== 控制器模块
 
-var classeCtrl    = require('./classe');
 var loginCtrl     = require('./login');
+var signupCtrl    = require('./signup');
 var userCtrl      = require('./user');
 var groupCtrl     = require('./group');
-
+var projectCtrl   = require('./project');
+var feedbackCtrl  = require('./feedback');
+var broadcastCtrl = require('./broadcast');
+var taskCtrl = require('./task');
+var resumeCtrl = require('./resume');
 
 //
 //== 简单的请求控制器
@@ -23,15 +27,24 @@ var goIndex = function(req, res) {
   res.render('index.html');
 };
 
-
+// 获取注册页
+var goSignup = function(req, res) {
+  res.render('signup.html');
+}
 //
 //== 暴露
 module.exports = {
   goLogin: goLogin,
   goIndex: goIndex,
-  signup: loginCtrl,
+  goSignup: goSignup,
+  logIn: loginCtrl,
+  signup: signupCtrl,
   logout: goLogin,
   users: userCtrl,
-  classes: classeCtrl,
-  groups: groupCtrl
+  groups: groupCtrl,
+  projects: projectCtrl,
+  feedbacks: feedbackCtrl,
+  broadcasts: broadcastCtrl,
+  tasks: taskCtrl,
+  resumes: resumeCtrl
 };
